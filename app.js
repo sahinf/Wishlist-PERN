@@ -2,7 +2,7 @@ const http = require('http')
 const port = 8080
   
 // Create a server object:
-const server = http.createServer(function (req, res) {
+const server = http.createServer( (req, res) => {
   
     // Write a response to the client
     res.write('Hello World')
@@ -12,7 +12,7 @@ const server = http.createServer(function (req, res) {
 })
   
 // Set up our server so it will listen on the port
-server.listen(port, function (error) {
+server.listen(port, (error) => {
   
     // Checking any error occur while listening on port
     if (error) {
@@ -20,6 +20,6 @@ server.listen(port, function (error) {
     }
     // Else sent message of listening
     else {
-        console.log('Server is listening on port' + port);
+        console.log('Server is listening on port ' + port);
     }
 })
