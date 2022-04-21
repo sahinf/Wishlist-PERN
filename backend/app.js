@@ -14,10 +14,17 @@ mountRoutes(app);
 
 //****** DELETE THIS MAYBE, OR PUT IT IN ITS OWN MODULE N EXPORT IT*/
 
-const pool = require('./db/index');
-console.log(pool);
+const pool = require('./db');
 pool.query('SELECT * FROM users')
 .then( (res) => console.table(res.rows))
+
+console.log('now testing express route');
+app.get('/users', (req, res) => {
+  console.log(req);
+  console.log(res);
+})
+
+// app.use()
 
 // pool.connect()
 // .then(() => console.log('Connected to database successfully'))
