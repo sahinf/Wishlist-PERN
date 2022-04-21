@@ -15,17 +15,27 @@ mountRoutes(app);
 //****** DELETE THIS MAYBE, OR PUT IT IN ITS OWN MODULE N EXPORT IT*/
 
 const pool = require('./db');
-pool.query('SELECT * FROM users')
+
+//* https://node-postgres.com/features/queries
+const query = {
+  name: 'fetch-user',
+  text: 'SELECT * FROM users WHERE users_id = $1',
+  values: [1],
+}
+
+pool.query(query)
 .then( (res) => console.table(res.rows))
 
-console.log('now testing express route');
-app.get('/users', (req, res) => {
-  console.log(req);
-  console.log(res);
-})
+//* TRY APIs
+// console.log('now testing express route');
+// const axios = require('axios');
+// axios.get(`http://localhost:${port}/users/34`)
+// .then( (res) => console.log(res))
+// .catch( (e) => console.log(e))
+
+
 
 // app.use()
-
 // pool.connect()
 // .then(() => console.log('Connected to database successfully'))
 // .then(() => pool.query('SELECT * FROM users')) // this returns results
@@ -33,14 +43,7 @@ app.get('/users', (req, res) => {
 // .catch(e => console.log(e))
 // .finally(() => pool.end())
 
-//* Now repeat above process with ASYNC
-
 //****** DELETE THIS MAYBE, OR PUT IT IN ITS OWN MODULE N EXPORT IT*/
-
-
-// const db = require('./db');
-// const { password } = require('pg/lib/defaults');
-// const client = require('pg/lib/native/client');
 
 
 // Create a server object:

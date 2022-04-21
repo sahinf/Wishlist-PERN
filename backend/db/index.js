@@ -21,6 +21,7 @@ const pool = new Pool({
   database: DTBS
 })
 
+//* This exports the 'query' function that (for example) gets used in /routes/user.js etc
 module.exports = {
   query: (text, params) => pool.query(text, params),
 }

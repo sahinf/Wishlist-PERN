@@ -16,8 +16,11 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1116.0",
-    "express": "latest",
     "express-promise-router": "^4.1.1",
     "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3"
   }
 }
