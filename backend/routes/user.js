@@ -1,4 +1,7 @@
-// LINK: https://node-postgres.com/guides/async-express
+//* Routing is simply for API calls
+//* I am only using it in order to learn
+//* How custom APIs can be made with Express routing
+//* https://node-postgres.com/guides/async-express
 
 const Router = require('express-promise-router');
 
