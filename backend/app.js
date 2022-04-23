@@ -9,6 +9,9 @@ const port = 8080
 //* Middleware (idk why yet) 
 app.use(cors());
 app.use(express.json())
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: true}));
 
 //* Landing page: can load an html here
 app.get('/', (req, res) => {
@@ -18,6 +21,7 @@ app.get('/', (req, res) => {
 //* Routing: app.use() on all routes
 const mountRoutes = require('./routes');
 mountRoutes(app);
+
 
 //* Default page
 app.use('*', (req, res) => {
