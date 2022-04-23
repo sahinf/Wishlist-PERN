@@ -17,7 +17,6 @@ module.exports = router;
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   const { rows } = await db.query('SELECT * FROM users where users_id = $1', [id]);
   res.send(rows[0]);
 })
