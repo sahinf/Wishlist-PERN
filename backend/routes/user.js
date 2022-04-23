@@ -15,8 +15,24 @@ const router = new Router();
 // export router to be mounted by parent app
 module.exports = router;
 
+
+//**** EXPLANATION / TUTORIAL
+/**
+ * So this the "sub" endpoint for our API beginning with /users
+ * ./index.js maps all "https//ip-address/users/" to here
+ * users/ ==> all users
+ * users/id ==> user with that id
+ */
+
+//* Get all users
+router.get('/', async (req, res) => {
+  const query = await db.query('SELECT * FROM users');
+  res.send(query.rows);
+})
+
+//* Get specific user
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const { rows } = await db.query('SELECT * FROM users where users_id = $1', [id]);
+  const { rows } = await db.query('SELECT * FROM users WHERE users_id = $1', [id]);
   res.send(rows[0]);
 })
