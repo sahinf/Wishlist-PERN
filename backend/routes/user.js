@@ -48,7 +48,8 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  const newPass = body['user_password'];
+  const newPass = body['password'];
+  console.log(JSON.stringify(body))
   const update = await db.query('UPDATE users SET user_password = $1 WHERE users_id = $2', [newPass, id]);
   res.json('User was updated');
 })
