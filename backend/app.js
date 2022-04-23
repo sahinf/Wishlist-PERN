@@ -18,14 +18,6 @@ app.use(express.json())
 const mountRoutes = require('./routes');
 mountRoutes(app);
 
-//**** Create a server object:
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.write('res.write message: Howdy\n');
-//   res.end('res.end message: Ending message!\n');
-// })
-
 //* Default page
 app.use('*', (req, res) => {
   res.sendStatus('404').send('Page not found');
