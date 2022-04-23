@@ -16,12 +16,17 @@ const router = new Router();
 module.exports = router;
 
 
-//**** EXPLANATION / TUTORIAL
+//**** EXPLANATION / TUTORIAL / TIPS
 /**
  * So this the "sub" endpoint for our API beginning with /users
  * ./index.js maps all "https//ip-address/users/" to here
  * users/ ==> all users
  * users/id ==> user with that id
+ * 
+ * res.send() vs res.json() : https://stackoverflow.com/questions/19041837/difference-between-res-send-and-res-json-in-express-js
+ * essentially, json forces the data into json format and calls res.send()
+ * res.send(100) will send a status code, res.json(100) will send a json number
+ * 
  */
 
 //* Get all users
