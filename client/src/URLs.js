@@ -1,6 +1,6 @@
 const localHost = true;
 
-const localURL = `https://localhost:8080/`;
+const localURL = `http://127.0.0.1:8080`;
 
 const requestDomainName = () => {
   return localHost ? localURL : "ENTER SERVER URL"
