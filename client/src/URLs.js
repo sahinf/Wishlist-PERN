@@ -1,6 +1,6 @@
 const localHost = true;
 
-const localURL = `https://localhost:8080`;
+const localURL = `https://localhost:8080/`;
 
 const requestDomainName = () => {
   return localHost ? localURL : "ENTER SERVER URL"
@@ -8,16 +8,18 @@ const requestDomainName = () => {
 
 const domainName = requestDomainName();
 
-const usersURL = () => {
-  return `/${domainName}/users`
-}
+//* All users API
+const usersURL = () => { return `${domainName}/users/`; }
 
-const userIdURL = (userId) => {
-  return `${usersURL}/${userId}`;
-}
+//* Specific user API
+const userIdURL = (userId) => { return `${usersURL}/${userId}/`; }
+
+//* Login API
+const loginURL = () => { return `${domainName}/login/`; }
 
 export {
   requestDomainName,
   usersURL,
-  userIdURL
+  userIdURL,
+  loginURL
 }

@@ -10,8 +10,6 @@ module.exports = router;
 //* Post request to check user credentials
 router.post('/', async (req, res) => {
   try {
-
-
     const id = req.body['users_id'];
     const password = req.body['user_password'];
 
@@ -56,7 +54,7 @@ router.post('/', async (req, res) => {
     const token = await jwtGenerator({
       id: rows[0].users_id
       //! Can add more things to tokenize (email, name, etc)
-    }).catch( (e) => {console.error(e.message)})
+    }).catch((e) => { console.error(e.message) })
 
     //* send token
     res.json(token);

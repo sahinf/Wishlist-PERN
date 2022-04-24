@@ -2,19 +2,17 @@
 
 import React, { useState } from "react"
 import { Navlink } from 'react-router-dom';
-import '../css/Auth.css';
-import { reqToLogIn } from "./RequestUser/ForLogIn";
+import '../css/Login.css';
+import { loginRequest } from "./RequestUser/RequestLogin";
 
-import {inputHook} from ''
+import {inputHook} from './custom_hooks/formHook';
 
-export default function Auth(props) {
+export default function Login(props) {
 
     //* capture ID and Password
-    // let [id, setId] = useState("");
-    // let [password, setPassword] = useState("");
     let [input, setInput] = inputHook({
-        userid: "",
-        password: ""
+        users_id: "",
+        user_password: ""
     })
 
     //* Submit handler: should query db to see if id/pass exists
@@ -39,16 +37,18 @@ export default function Auth(props) {
     //         console.error(error.message)
     //     }
     // }
+
+
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        let jwt = await reqToLogIn(input);
-        if (jwt) {
-            localStorage.setItem("token", jwt);
+    //     e.preventDefault();
+    //     let jwt = await loginRequest(input);
+    //     if (jwt) {
+    //         localStorage.setItem("token", jwt);
 
-            const { state } = props.location;
+    //         const { state } = props.location;
 
-            window.location = state ? state.from.pathname : "/";
-        }
+    //         window.location = state ? state.from.pathname : "/";
+    //     }
     };
 
 
@@ -57,7 +57,7 @@ export default function Auth(props) {
             <form className="Auth-form">
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Sign In</h3>
-                    //! If not registered, should reroute to sign up page
+                    {/* If not registered, should reroute to sign up page */}
                     {/* <div className="text-center">
                             Not registered yet?{" "}
                             <span className="link-primary" onClick={changeAuthMode}>
