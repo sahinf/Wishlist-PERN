@@ -28,6 +28,12 @@ module.exports = router;
  * res.send(100) will send a status code, res.json(100) will send a json number
  * There is no difference if the returned value is always an array/json
  * 
+ * GET requests do not have bodies, just params! 
+ *  - used for idempotent operations (multiple calls, same results)
+ *    - for simply viewing data
+ * POST requests have bodies
+ *  - used for complex data structures (arrays, objects, etc)
+ *    - for mutating data
  */
 
 //* Get all users
