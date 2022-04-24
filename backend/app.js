@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const hostname = '127.0.0.1'
-const port = 8080
+//* Access environment variables
+require('dotenv').config();
+const {PORT} = process.env;
 
 //* Middleware (cors is secure) 
 app.use(cors());
@@ -23,8 +24,8 @@ mountRoutes(app);
 app.use('*', (req, res) => {
   res.sendStatus('404').send('Page not found');
 });
-app.listen(port, () => {
-  console.log(`Server listening on ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
 })
 
 
