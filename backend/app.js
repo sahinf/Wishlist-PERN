@@ -1,4 +1,3 @@
-const http = require('http');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -6,12 +5,9 @@ const cors = require('cors');
 const hostname = '127.0.0.1'
 const port = 8080
 
-//* Middleware (idk why yet) 
+//* Middleware (cors is secure) 
 app.use(cors());
 app.use(express.json())
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
 
 //* Landing page: can load an html here
 app.get('/', (req, res) => {
@@ -27,9 +23,9 @@ mountRoutes(app);
 app.use('*', (req, res) => {
   res.sendStatus('404').send('Page not found');
 });
-http.createServer(app).listen(port, hostname, () =>{
-  console.log(`Server listening on https://${hostname}:${port}`);
-});
+app.listen(port, () => {
+  console.log(`Server listening on ${port}`);
+})
 
 
 //** Note
