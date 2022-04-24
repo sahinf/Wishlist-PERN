@@ -29,32 +29,6 @@ export default function Login(props) {
         }
     };
 
-    //* Submit handler: should query db to see if id/pass exists
-    // const handleSubmit = async e => {
-    //     e.preventDefault();
-    //     try {
-    //         const body = { id, password };
-    //         //* custom written API route below :)
-
-    //         // const res = await fetch(`http://127.0.0.1:8080/users/${id}`)
-    //         // console.log(res.body)
-
-
-    //         //* update user password WORKS
-    //         // const url = `http://127.0.0.1:8080/users/${body.id}`;
-    //         // const res = await fetch(url, {
-    //         //     method: "PUT",
-    //         //     headers: { "Content-Type": "application/json" },
-    //         //     body: JSON.stringify(body)
-    //         // });
-    //     } catch (error) {
-    //         console.error(error.message)
-    //     }
-    // }
-
-
-
-
     return (
         <div className="Auth-form-container">
             <form className="Auth-form">
