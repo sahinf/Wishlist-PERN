@@ -8,20 +8,17 @@ import { loginURL } from '../../URLs';
  * @returns JSON Web Token created for user
  */
 export const loginRequest = async (formData) => {
-  try {
-    const { data } = await axios({
-      url: loginURL(),
-      method: "post",
-      data: formData,
-    });
-
-    return data;
-  } catch (e) {
-    console.log(e.response);
-
-    if (e.response.status === 401 || e.response.status === 500) {
-      alert(e.response.data);
-    }
-    return;
-  }
+  await axios({
+    url: loginURL(),
+    method: "post",
+    data: formData,
+  })
+    .then((data) => { return data; })
+    .catch((err) => {
+      if (err.response.status === 401 || err.response.status ===500) {
+        alert(err.response.data);
+      }
+      return;
+    })
+    .finally( () => {return;} )
 };
