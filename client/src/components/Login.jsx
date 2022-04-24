@@ -1,6 +1,6 @@
 // https://supertokens.com/blog/building-a-login-screen-with-react-and-bootstrap
 
-import React, { useState } from "react"
+import React from "react"
 import { Navlink } from 'react-router-dom';
 import '../css/Login.css';
 import { loginRequest } from "./RequestUser/RequestLogin";
@@ -9,11 +9,25 @@ import inputHook from './custom_hooks/formHook';
 
 export default function Login(props) {
 
-    //* capture ID and Password
+    //* capture ID and password
     let [input, setInput] = inputHook({
         users_id: "",
         user_password: ""
     })
+
+    //* send ID and password to login API
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Handling submit')
+        let jwt = await loginRequest(input);
+        if (jwt) {
+            localStorage.setItem("token", jwt);
+
+            const { state } = props.location;
+
+            window.location = state ? state.from.pathname : "/";
+        }
+    };
 
     //* Submit handler: should query db to see if id/pass exists
     // const handleSubmit = async e => {
@@ -39,17 +53,6 @@ export default function Login(props) {
     // }
 
 
-    const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     let jwt = await loginRequest(input);
-    //     if (jwt) {
-    //         localStorage.setItem("token", jwt);
-
-    //         const { state } = props.location;
-
-    //         window.location = state ? state.from.pathname : "/";
-    //     }
-    };
 
 
     return (
@@ -71,7 +74,8 @@ export default function Login(props) {
                             className="form-control mt-1"
                             placeholder="Enter User ID"
                             //! Should update id
-                            onChange={e => console.log(e.target.value)}
+                            // onChange={e => console.log(e.target.value)}
+                            onChange={e => console.log('lol')}
                         />
                     </div>
                     <div className="form-group mt-3">
