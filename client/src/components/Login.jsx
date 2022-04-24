@@ -1,7 +1,7 @@
 // https://supertokens.com/blog/building-a-login-screen-with-react-and-bootstrap
 
 import React from "react"
-import { Navlink } from 'react-router-dom';
+// import { Navlink } from 'react-router-dom';
 import '../css/Login.css';
 import { loginRequest } from "./RequestUser/RequestLogin";
 
@@ -17,8 +17,9 @@ export default function Login(props) {
 
     //* send ID and password to login API
     const handleSubmit = async (e) => {
+        // console.log(e)
         e.preventDefault();
-        console.log('Handling submit')
+        // console.log('Handling submit')
         let jwt = await loginRequest(input);
         if (jwt) {
             localStorage.setItem("token", jwt);
@@ -44,12 +45,11 @@ export default function Login(props) {
                     <div className="form-group mt-3">
                         <label>User ID</label>
                         <input
-                            type="id"
+                            type="text"
                             className="form-control mt-1"
                             placeholder="Enter User ID"
-                            //! Should update id
-                            // onChange={e => console.log(e.target.value)}
-                            onChange={e => console.log('lol')}
+                            name="users_id" // Database name
+                            onChange={setInput}
                         />
                     </div>
                     <div className="form-group mt-3">
@@ -58,8 +58,8 @@ export default function Login(props) {
                             type="password"
                             className="form-control mt-1"
                             placeholder="Enter password"
-                            // ! update password 
-                            onChange={e => console.log(e.target.value)}
+                            name="user_password" // Database name
+                            onChange={setInput}
                         />
                     </div>
                     <div className="d-grid gap-2 mt-3">
