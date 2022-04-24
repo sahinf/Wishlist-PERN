@@ -1,24 +1,13 @@
-// LINK: https://node-postgres.com/guides/async-express
-
+require('dotenv').config();
+const {DB_USER, DB_PASS, DB_HOST, DB_PORT, DB_DTBS} = process.env;
 const { Pool } = require('pg');
 
-// to test with Nullish Coalescing
-const env_var_placeholder = null;
-
-//* Nullish ?? Chooses the RHS if LHS is null or undefined
-//* Nullish breaks compilation
-const USER = 'postgres';
-const PASS = '310project';
-const HOST = 'csce-310-db.c9ngvmqcspz8.us-east-1.rds.amazonaws.com'
-const PORT = '5432'
-const DTBS = 'postgres';
-
 const pool = new Pool({
-  user: USER,
-  password: PASS,
-  host: HOST,
-  port: PORT,
-  database: DTBS
+  user: DB_USER,
+  password: DB_PASS,
+  host: DB_HOST,
+  port: DB_PORT,
+  database: DB_DTBS
 })
 
 //* This exports the 'query' function that (for example) gets used in /routes/user.js etc
