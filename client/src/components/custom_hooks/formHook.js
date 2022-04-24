@@ -1,4 +1,4 @@
-import { useState } from "react-hook-form";
+import { useState } from "react";
 
 function useFormFields(initialState) {
 	const [fields, setValues] = useState(initialState);

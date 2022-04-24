@@ -5,7 +5,7 @@ import { Navlink } from 'react-router-dom';
 import '../css/Login.css';
 import { loginRequest } from "./RequestUser/RequestLogin";
 
-import {inputHook} from './custom_hooks/formHook';
+import inputHook from './custom_hooks/formHook';
 
 export default function Login(props) {
 

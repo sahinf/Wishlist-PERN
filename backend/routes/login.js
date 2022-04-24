@@ -7,9 +7,12 @@ const router = new Router;
 module.exports = router;
 
 
-//* Post request to check user credentials
+/**
+ * Handle a /login/ route POST request
+ */
 router.post('/', async (req, res) => {
   try {
+    //* credentials are stored in POST request's body
     const id = req.body['users_id'];
     const password = req.body['user_password'];
 
@@ -27,8 +30,6 @@ router.post('/', async (req, res) => {
     }
 
     const { rows } = user;
-    console.log(rows[0].user_password);
-    console.log(password)
 
     //* handle user_password != password
     //! Changed user_password VARCHAR length in table to 60 from 50 so it works
@@ -41,7 +42,6 @@ router.post('/', async (req, res) => {
 
     const isValidPassword = (password === rows[0].user_password);
 
-    // console.log(isValidPassword);
 
     //* handle wrong password
     if (!isValidPassword) {
@@ -49,8 +49,6 @@ router.post('/', async (req, res) => {
     }
 
     //* generate token for user
-    console.log(rows[0])
-    console.log(rows[0].users_id)
     const token = await jwtGenerator({
       id: rows[0].users_id
       //! Can add more things to tokenize (email, name, etc)
