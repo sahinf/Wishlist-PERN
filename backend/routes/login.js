@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
 
     //* user_id not in db
     if (user.rowCount < 1) {
-      res.status(401).json('User with id does not exist')
+      return res.status(401).json('User with id does not exist')
     }
 
     const { rows } = user;
