@@ -17,15 +17,11 @@ export default function Login(props) {
 
     //* send ID and password to login API
     const handleSubmit = async (e) => {
-        // console.log(e)
-        e.preventDefault();
-        // console.log('Handling submit')
+        e.preventDefault(); //* Prevent a link (e) from opening the URL
         let jwt = await loginRequest(input);
         if (jwt) {
             localStorage.setItem("token", jwt);
-
             const { state } = props.location;
-
             window.location = state ? state.from.pathname : "/";
         }
     };
