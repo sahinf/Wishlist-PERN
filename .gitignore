@@ -1,1 +1,4 @@
 node_modules/**
+
+# Mac bookkeeping file
+.DS_Store
