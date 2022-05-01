@@ -21,6 +21,15 @@ router.post('/', async (req, res) => {
       return res.status(401).json("Please Fill Info");
     }
 
+    //* Ensure that we have a positive integer as user_id
+    //* user_id should never have been stored as an integer oops
+    const ensureInt = (e) => {
+      return Number.isInteger(parseInt(e)) && e >= 0;
+    }
+    if (!ensureInt(id)) {
+      return res.status(401).json('User ID should be an integer');
+    }
+
     //* query password of given user_id
     const user = await db.query(`SELECT * FROM users WHERE users_id = $1`, [id]);
 
