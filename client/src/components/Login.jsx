@@ -5,13 +5,9 @@ import React from "react"
 // import { Navlink } from 'react-router-dom';
 import '../css/Login.css';
 import { loginRequest } from "./RequestUser/RequestLogin";
-
 import inputHook from './custom_hooks/formHook';
-
 import { Outlet } from "react-router-dom";
 
-//! DEBUG not using props with router v6
-//! used to be Login(props) {}
 export default function Login(props) {
 
     console.log('Login called with props: ', JSON.stringify(props));
@@ -29,7 +25,7 @@ export default function Login(props) {
         let jwt = await loginRequest(input);
         if (jwt) {
             localStorage.setItem("token", jwt);
-            //! DEBUG not using props with router v6
+            //! DEBUG this may need to use useNavigate instead
             // const { state } = props.location;
             // window.location = state ? state.from.pathname : "/";
         }

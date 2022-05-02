@@ -39,8 +39,7 @@ function Homepage(props) {
 		return { firstArrEle, secondArrEle, thirdArrEle };
 	}
 
-	//destructing state
-
+	//* Destructing state
 	const { firstArrEle, secondArrEle, thirdArrEle, status } = state;
 
 	return (
