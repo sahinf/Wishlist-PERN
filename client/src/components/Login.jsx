@@ -1,33 +1,30 @@
 // https://supertokens.com/blog/building-a-login-screen-with-react-and-bootstrap
 
 import React from "react"
-//! Used for "signup" link, but we are not using it
-// import { Navlink } from 'react-router-dom';
 import '../css/Login.css';
 import { loginRequest } from "./RequestUser/RequestLogin";
 import inputHook from './custom_hooks/formHook';
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export default function Login(props) {
 
-    console.log('Login called with props: ', JSON.stringify(props));
     //* capture ID and password
     let [input, setInput] = inputHook({
         users_id: "",
         user_password: ""
     })
-
+    
     props.DisplaySetNone();
-
+    
+    //* Successful login!
+    const navigate = useNavigate();
     //* send ID and password to login API
     const handleSubmit = async (e) => {
         e.preventDefault(); //* Prevent a link (e) from opening the URL
         let jwt = await loginRequest(input);
         if (jwt) {
             localStorage.setItem("token", jwt);
-            //! DEBUG this may need to use useNavigate instead
-            // const { state } = props.location;
-            // window.location = state ? state.from.pathname : "/";
+            navigate('/')
         }
     };
 

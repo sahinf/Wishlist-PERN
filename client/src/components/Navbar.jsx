@@ -9,12 +9,14 @@ import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
 import "../css/Navbar.css";
 
+//* ADDING FEATURE SETS NOW
+
 //! Used to be Navbar = (props) => {}
 const Navbar = (props) => {
 
 	const { display, count } = props;
 
-	const [currentUser, setCurrentUser] = useState({ user_id: "" });
+	const [currentUser, setCurrentUser] = useState({ user_id: "", user_name: "" });
 	const [cartNumber, setCartNumber] = useState(0);
 
 	const searchIconStyle = { fontSize: "1.5rem" };
@@ -44,7 +46,11 @@ const Navbar = (props) => {
 		const showCurrentUserAndWishlistCount = async () => {
 			//* Get user_id from token in local storage
 			const user = await activeUser();
+			console.log("navbar user: ", user);
+			
+
 			setCurrentUser({ ...user });
+			console.log(JSON.stringify(currentUser));
 			try {
 				const { data } = await axios({
 					method: "post",
@@ -86,31 +92,23 @@ const Navbar = (props) => {
 				</button>
 			</div> */}
 
-			<Link to="/login">Login</Link>
+			{/* <NavLink to="/login">Login</NavLink> */}
 			{/* //! DISABLED OLD LINK */}
-			{/* <div className="options account">
-				{currentUser.name ? (
-					<small>
-						hello, <span>{currentUser.name}</span>
-					</small>
-				) : (
-					<small>
-						<Link to="/login">LOGIN NOW</Link>
-					</small>
-				)}
-				<b>account</b>
-			</div> */}
-
 			<div className="options account">
+				{currentUser.name ? (<small> Hello, <span>{currentUser.name}</span> </small>)
+					: (<small> <Link to="/login">LOGIN NOW</Link> </small>)}
+				{/* <b>account</b> */}
+			</div>
+
+			{/* <div className="options account">
 				<small>orders</small>
 
 				<b>&amp; Return</b>
-			</div>
+			</div> */}
 
 			{/* //* Link to Wishlist */}
 			<NavLink to="/am/cart" className="options ForCart">
 				<ShoppingCartIcon></ShoppingCartIcon>
-
 				<span>{cartNumber}</span>
 			</NavLink>
 			{currentUser.name && (

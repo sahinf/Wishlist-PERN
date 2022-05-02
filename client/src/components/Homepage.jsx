@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { getAllProductsURL } from "./../URLs";
+import { Outlet } from "react-router-dom";
 import "../css/Homepage.css";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -79,6 +80,8 @@ function Homepage(props) {
 			) : (
 				<Loading />
 			)}
+			{/* //! Outlet in home messes up everything */}
+			{/* <Outlet /> */}
 		</>
 	);
 }

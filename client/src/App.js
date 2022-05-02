@@ -11,6 +11,7 @@ import "./css/App.css";
 import { useDisplayToggle } from "./components/custom_hooks/navDisplay";
 
 import activeUser from "./components/custom_hooks/activeUser";
+import Profile from "./components/Profile";
 
 function App() {
   const [user, setUser] = useState({});
@@ -40,11 +41,11 @@ function App() {
     <div className="App">
       <Navbar display={display} />
       <Routes>
+        <Route index element={<Homepage DisplaySetFlex={DisplaySetFlex} />} />
         <Route path='/login' element={<Login DisplaySetNone={DisplaySetNone} />} />
-        <Route path='/' element={<Homepage DisplaySetFlex={DisplaySetFlex} />}>
-        </Route>
+        <Route path='/profile' element={<Profile DisplaySetFlex={DisplaySetFlex}/>} />
       </Routes>
-    </div>
+    </div >
   );
 }
 
