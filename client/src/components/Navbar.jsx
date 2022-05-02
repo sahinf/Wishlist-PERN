@@ -4,63 +4,72 @@ import activeUser from "./custom_hooks/activeUser";
 import token from "./custom_hooks/getToken";
 import axios from "axios";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { wishlistCountURL } from "../URLs";
+import { loginURL, userIdURL, wishlistCountURL } from "../URLs";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
 import "../css/Navbar.css";
 
-const Navbar = (props) => {
-	console.log("Navbar called")
-	const { display, count } = props;
+//! Used to be Navbar = (props) => {}
+const Navbar = () => {
 
-	const [currentUser, setCurrentUser] = useState({ name: "" });
+	// const { display, count } = props;
+
+	const [currentUser, setCurrentUser] = useState({ user_id: "" });
 	const [cartNumber, setCartNumber] = useState(0);
 
 	const searchIconStyle = { fontSize: "1.5rem" };
+
+	//! REMOVE wishlist items count
+	// useEffect(() => {
+	// 	const cartCount = async () => {
+	// 		try {
+	// 			const { data } = await axios({
+	// 				method: "get",
+	// 				url: wishlistCountURL(),
+	// 				headers: {
+	// 					token: token(),
+	// 				},
+	// 			});
+
+	// 			setCartNumber(data.count);
+	// 		} catch (e) {
+	// 			// alert(e.message);
+	// 		}
+	// 	};
+
+	// 	cartCount();
+	// }, [count]);
+
 	useEffect(() => {
-		const cartCount = async () => {
-			try {
-				const { data } = await axios({
-					method: "get",
-					url: wishlistCountURL(),
-					headers: {
-						token: token(),
-					},
-				});
-
-				setCartNumber(data.count);
-			} catch (e) {
-				// alert(e.message);
-			}
-		};
-
-		cartCount();
-	}, [count]);
-
-	useEffect(() => {
-		const showCurrentUserAndGettingCartCount = async () => {
+		const showCurrentUserAndWishlistCount = async () => {
+			//* Get user_id from token in local storage
 			const user = await activeUser();
 			setCurrentUser({ ...user });
 			try {
 				const { data } = await axios({
-					method: "get",
+					method: "post",
 					url: wishlistCountURL(),
-					headers: {
-						token: token(),
-					},
+					data: {
+						users_id: user
+					}
 				});
 
+				console.log(JSON.stringify(data));
 				setCartNumber(data.count);
 			} catch (e) {
 				// alert(e.message);
 			}
 		};
 
-		showCurrentUserAndGettingCartCount();
+		showCurrentUserAndWishlistCount();
 	}, []);
 
 	return (
-		<nav className="container-navbar" style={{ display: display }}>
+		//! REMOVE display comming from props
+		// <nav className="container-navbar" style={{ display: display }}>
+		<nav className="container-navbar">
+
+			{/* //* Amazon Logo */}
 			<NavLink to="/">
 				<img
 					src="https://www.freepnglogos.com/uploads/amazon-png-logo-vector/large-images-amazon-png-logo-vector-7.png3ft3d1416935166817"
@@ -68,8 +77,10 @@ const Navbar = (props) => {
 					className="amazon-logo"
 				/>
 			</NavLink>
+
+
 			{/* </div> */}
-			
+
 			{/* //! DISABLED SEARCH BAR */}
 			{/* <div className="search" tabindex="1">
 				<input type="text" />
@@ -78,7 +89,9 @@ const Navbar = (props) => {
 				</button>
 			</div> */}
 
-			<div className="options account">
+			<NavLink to="/login">LOOgin</NavLink>
+			{/* //! DISABLED OLD LINK */}
+			{/* <div className="options account">
 				{currentUser.name ? (
 					<small>
 						hello, <span>{currentUser.name}</span>
@@ -89,12 +102,15 @@ const Navbar = (props) => {
 					</small>
 				)}
 				<b>account</b>
-			</div>
+			</div> */}
+
 			<div className="options account">
 				<small>orders</small>
 
 				<b>&amp; Return</b>
 			</div>
+
+			{/* //* Link to Wishlist */}
 			<NavLink to="/am/cart" className="options ForCart">
 				<ShoppingCartIcon></ShoppingCartIcon>
 

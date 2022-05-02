@@ -1,13 +1,20 @@
 // https://supertokens.com/blog/building-a-login-screen-with-react-and-bootstrap
 
 import React from "react"
+//! Used for "signup" link, but we are not using it
 // import { Navlink } from 'react-router-dom';
 import '../css/Login.css';
 import { loginRequest } from "./RequestUser/RequestLogin";
 
 import inputHook from './custom_hooks/formHook';
 
-export default function Login(props) {
+import { Outlet } from "react-router-dom";
+
+//! DEBUG not using props with router v6
+//! used to be Login(props) {}
+export default function Login() {
+
+    console.log('Login called')
 
     //* capture ID and password
     let [input, setInput] = inputHook({
@@ -21,8 +28,9 @@ export default function Login(props) {
         let jwt = await loginRequest(input);
         if (jwt) {
             localStorage.setItem("token", jwt);
-            const { state } = props.location;
-            window.location = state ? state.from.pathname : "/";
+            //! DEBUG not using props with router v6
+            // const { state } = props.location;
+            // window.location = state ? state.from.pathname : "/";
         }
     };
 

@@ -26,12 +26,21 @@ function App() {
     getUser();
   }, []);
 
+  function Ass() {
+    return (
+      <div style={{ padding: 20 }}>
+        <h2>Home View</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adip.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Navbar />}>
           <Route index element={<Homepage />} />
-          <Route path="login" element={<Login />} />
+          <Route path="/login" element={<Ass />} />
         </Route>
       </Routes>
       {/* <Navbar display={display} />

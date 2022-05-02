@@ -3,8 +3,8 @@ import getToken from "./getToken";
 
 const activeUser = async () => {
 	try {
-		const user = jwtDecode(getToken());
-		return user;
+		const user_id = jwtDecode(getToken());
+		return user_id.id;
 	} catch (e) {
 		return null;
 	}

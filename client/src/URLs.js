@@ -9,31 +9,31 @@ const requestDomainName = () => {
 const domainName = requestDomainName();
 
 //* All users API
-const usersURL = () => `${domainName}/users/`;
+const usersURL = () => `${domainName}/users`;
 
 //* Specific user API
-const userIdURL = (userId) => `${usersURL}/${userId}/`;
+const userIdURL = (userId) => `${usersURL()}/${userId}`;
 
 //* Login API
-const loginURL = () => `${domainName}/login/`;
+const loginURL = () => `${domainName}/login`;
 
 //***** WIISHLIST API URLs */
-const wishlistURL = () => `${domainName}/wishlist`
+const wishlistURL = () => `${domainName}/wishlist/`;
 
-const wishlistUser = (user_id) => `${wishlistURL}/${user_id}`
+const wishlistUser = (user_id) => `${wishlistURL()}/${user_id}`;
 
-const wishlistCountURL = () => `${wishlistURL}/count`
+const wishlistCountURL = () => `${wishlistURL()}/count`;
 
-const wishlistInsertURL = () => `${wishlistURL}/insert`
+const wishlistInsertURL = () => `${wishlistURL()}/insert`;
 
-const wishlistDeleteURL = () => `${wishlistURL}/delete`
+const wishlistDeleteURL = () => `${wishlistURL()}/delete`;
 
 //***** PRODUCTS API URLs */
-const productsURL = () => `${domainName}/products`
+const productsURL = () => `${domainName}/products`;
 
-const getAllProductsURL = () => `${productsURL}/all`
+const getAllProductsURL = () => `${productsURL()}/all`;
 
-const getOneProductURL = () => (product_id) => `${productsURL}/:${product_id}`
+const getOneProductURL = () => (product_id) => `${productsURL()}/:${product_id}`;
 
 
 export {
@@ -41,12 +41,10 @@ export {
   usersURL,
   userIdURL,
   loginURL,
-  //* wishlists APIs
   wishlistUser,
   wishlistCountURL,
   wishlistInsertURL,
   wishlistDeleteURL,
-  //* products APIs
   getAllProductsURL,
   getOneProductURL
 }
