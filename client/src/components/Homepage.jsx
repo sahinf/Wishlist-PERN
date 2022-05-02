@@ -44,6 +44,15 @@ function Homepage(props) {
 	const { firstArrEle, secondArrEle, thirdArrEle, status } = state;
 
 	return (
+		// <div>
+		// 	<li>1</li>
+		// 	<li>1</li>
+		// 	<li>1</li>
+		// 	<li>1</li>
+		// 	<li>1</li>
+		// 	<li>1</li>
+		// 	<li>1</li>
+		// </div>
 		<>
 			{status ? (
 				<>

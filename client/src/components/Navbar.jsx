@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import activeUser from "./custom_hooks/activeUser";
 import token from "./custom_hooks/getToken";
 import axios from "axios";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { loginURL, userIdURL, wishlistCountURL } from "../URLs";
+import { wishlistCountURL } from "../URLs";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
 import "../css/Navbar.css";
 
 //! Used to be Navbar = (props) => {}
-const Navbar = () => {
+const Navbar = (props) => {
 
-	// const { display, count } = props;
+	const { display, count } = props;
 
 	const [currentUser, setCurrentUser] = useState({ user_id: "" });
 	const [cartNumber, setCartNumber] = useState(0);
@@ -53,8 +53,6 @@ const Navbar = () => {
 						users_id: user
 					}
 				});
-
-				console.log(JSON.stringify(data));
 				setCartNumber(data.count);
 			} catch (e) {
 				// alert(e.message);
@@ -65,9 +63,8 @@ const Navbar = () => {
 	}, []);
 
 	return (
-		//! REMOVE display comming from props
-		// <nav className="container-navbar" style={{ display: display }}>
-		<nav className="container-navbar">
+		<nav className="container-navbar" style={{ display: display }}>
+			{/* <nav className="container-navbar"> */}
 
 			{/* //* Amazon Logo */}
 			<NavLink to="/">
@@ -89,7 +86,7 @@ const Navbar = () => {
 				</button>
 			</div> */}
 
-			<NavLink to="/login">LOOgin</NavLink>
+			<Link to="/login">Login</Link>
 			{/* //! DISABLED OLD LINK */}
 			{/* <div className="options account">
 				{currentUser.name ? (
@@ -128,6 +125,7 @@ const Navbar = () => {
 					log out
 				</div>
 			)}
+			<Outlet />
 		</nav>
 	);
 };

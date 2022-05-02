@@ -12,15 +12,16 @@ import { Outlet } from "react-router-dom";
 
 //! DEBUG not using props with router v6
 //! used to be Login(props) {}
-export default function Login() {
+export default function Login(props) {
 
-    console.log('Login called')
-
+    console.log('Login called with props: ', JSON.stringify(props));
     //* capture ID and password
     let [input, setInput] = inputHook({
         users_id: "",
         user_password: ""
     })
+
+    props.DisplaySetNone();
 
     //* send ID and password to login API
     const handleSubmit = async (e) => {

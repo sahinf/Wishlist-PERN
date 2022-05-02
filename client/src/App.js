@@ -26,7 +26,7 @@ function App() {
     getUser();
   }, []);
 
-  function Ass() {
+  function TestComponent() {
     return (
       <div style={{ padding: 20 }}>
         <h2>Home View</h2>
@@ -37,68 +37,15 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar display={display} />
       <Routes>
-        <Route path="/" element={<Navbar />}>
-          <Route index element={<Homepage />} />
-          <Route path="/login" element={<Ass />} />
+        <Route path='/' element={<Homepage DisplaySetFlex={DisplaySetFlex} />}>
+          {/* <Route path='login' element={<TestComponent />} /> */}
+          <Route path='/login' element={<Login DisplaySetNone={DisplaySetNone} />} />
         </Route>
       </Routes>
-      {/* <Navbar display={display} />
-        <Routes>
-          <Route
-            path="/"
-            render={(arg) => (
-              <Homepage {...arg} DisplaySetFlex={DisplaySetFlex} />
-            )}
-          />
-          <Route
-            path="/login"
-            render={(arg) => <Login {...arg} DisplaySetNone={DisplaySetNone} />}
-          />
-
-          <Route
-            path="/:id"
-            render={(arg) => (
-              <OneItemPage {...arg} DisplaySetFlex={DisplaySetFlex} />
-            )}
-          />
-          <Route
-            path="/am/cart"
-            render={(props) => {
-              if (!user) {
-                return (
-                  <Link
-                    to={{
-                      pathname: "/login",
-                      state: { from: props.location },
-                    }}
-                  />
-                );
-              }
-              return <Cart {...props} DisplaySetFlex={DisplaySetFlex} />;
-            }}
-          />
-        </Routes> */}
     </div>
   );
 }
 
 export default App;
-
-// import Footer from './components/Footer';
-// import Header from './components/Header';
-// import Login from './components/Login';
-
-// import './css/App.css';
-
-// const App = () => (
-//   <>
-//     {/* <Header></Header> */}
-//     <main style={{ minHeight: "93vh" }}>
-//       <Login> </Login>
-//     </main>
-//     {/* <Footer></Footer> */}
-//   </>
-// );
-
-// export default App
