@@ -1,13 +1,16 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom"; // replaced with navigate
+import { useNavigate } from "react-router-dom";
 import "./../css/Card.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 function Card({ name, img, price, rating, id }) {
-	const history = useHistory();
+	// const history = useHistory(); // replaced with navigate
+	const navigate = useNavigate()
 
 	const handleClickForRedirect = () => {
-		history.push(`/${id}`);
+		// history.push(`/${id}`); replaced with navigate
+		navigate(`${id}`, {replace: true});
 	};
 
 	const getrating = () => {

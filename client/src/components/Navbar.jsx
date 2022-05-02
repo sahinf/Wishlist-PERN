@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../css/Navbar.css";
 
 const Navbar = (props) => {
+	console.log("Navbar called")
 	const { display, count } = props;
 
 	const [currentUser, setCurrentUser] = useState({ name: "" });
@@ -52,7 +53,6 @@ const Navbar = (props) => {
 				setCartNumber(data.count);
 			} catch (e) {
 				// alert(e.message);
-				// console.log("user is not login");
 			}
 		};
 
@@ -69,13 +69,14 @@ const Navbar = (props) => {
 				/>
 			</NavLink>
 			{/* </div> */}
-
-			<div className="search" tabindex="1">
+			
+			{/* //! DISABLED SEARCH BAR */}
+			{/* <div className="search" tabindex="1">
 				<input type="text" />
 				<button>
 					<i className="ion-ios-search-strong" style={searchIconStyle}></i>
 				</button>
-			</div>
+			</div> */}
 
 			<div className="options account">
 				{currentUser.name ? (
@@ -84,7 +85,7 @@ const Navbar = (props) => {
 					</small>
 				) : (
 					<small>
-						<Link to="/login">Login</Link>
+						<Link to="/login">LOGIN NOW</Link>
 					</small>
 				)}
 				<b>account</b>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import Carousel from "./Carousel";
-// import Card from "./Card";
+import Card from "./Card";
 import Loading from "./Loading";
 import Footer from "./Footer";
 import axios from "axios";
@@ -47,7 +47,7 @@ function Homepage(props) {
 		<>
 			{status ? (
 				<>
-					<Carousel />
+					{/* <Carousel /> */}
 					<div className="Homepage ">
 						<div className="ItemContainer upperItemContainer ">
 							{firstArrEle.map((arg) => (

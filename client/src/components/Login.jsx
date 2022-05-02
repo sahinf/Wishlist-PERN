@@ -67,10 +67,11 @@ export default function Login(props) {
                     {/* <p className="text-center mt-2">
                         Forgot <a href="#">password?</a>
                     </p> */}
-                    
+
                     {/* Add <NavLink to="/signup"> Sign up </NavLink> */}
                 </div>
             </form>
+            <Outlet />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 //! Switch -> Route, Redirect -> Navigate
-import { Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./components/Homepage";
 import OneItemPage from "./components/OneItemPage";
@@ -13,65 +13,65 @@ import { useDisplayToggle } from "./components/custom_hooks/navDisplay";
 import activeUser from "./components/custom_hooks/activeUser";
 
 function App() {
-	const [user, setUser] = useState({});
-	const [display, DisplaySetNone, DisplaySetFlex] = useDisplayToggle("flex");
+  const [user, setUser] = useState({});
+  const [display, DisplaySetNone, DisplaySetFlex] = useDisplayToggle("flex");
 
-	useEffect(() => {
-		async function getUser() {
-			try {
-				setUser(await activeUser());
-			} catch (e) {}
-		}
+  useEffect(() => {
+    async function getUser() {
+      try {
+        setUser(await activeUser());
+      } catch (e) { }
+    }
 
-		getUser();
-	}, []);
+    getUser();
+  }, []);
 
-	return (
-		<div className="App">
-			<Navbar display={display} />
-			<Switch>
-				<Route
-					exact
-					path="/"
-					render={(arg) => (
-						<Homepage {...arg} DisplaySetFlex={DisplaySetFlex} />
-					)}
-				/>
-				<Route
-					exact
-					path="/login"
-					render={(arg) => <Login {...arg} DisplaySetNone={DisplaySetNone} />}
-				/>
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Homepage />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
+      {/* <Navbar display={display} />
+        <Routes>
+          <Route
+            path="/"
+            render={(arg) => (
+              <Homepage {...arg} DisplaySetFlex={DisplaySetFlex} />
+            )}
+          />
+          <Route
+            path="/login"
+            render={(arg) => <Login {...arg} DisplaySetNone={DisplaySetNone} />}
+          />
 
-				<Route
-					exact
-					path="/:id"
-					render={(arg) => (
-						<OneItemPage {...arg} DisplaySetFlex={DisplaySetFlex} />
-					)}
-				/>
-				<Route
-					exact
-					path="/am/cart"
-					render={(props) => {
-						if (!user) {
-							return (
-								<Redirect
-									to={{
-										pathname: "/login",
-
-										state: { from: props.location },
-									}}
-								/>
-							);
-						}
-
-						return <Cart {...props} DisplaySetFlex={DisplaySetFlex} />;
-					}}
-				/>
-			</Switch>
-		</div>
-	);
+          <Route
+            path="/:id"
+            render={(arg) => (
+              <OneItemPage {...arg} DisplaySetFlex={DisplaySetFlex} />
+            )}
+          />
+          <Route
+            path="/am/cart"
+            render={(props) => {
+              if (!user) {
+                return (
+                  <Link
+                    to={{
+                      pathname: "/login",
+                      state: { from: props.location },
+                    }}
+                  />
+                );
+              }
+              return <Cart {...props} DisplaySetFlex={DisplaySetFlex} />;
+            }}
+          />
+        </Routes> */}
+    </div>
+  );
 }
 
 export default App;

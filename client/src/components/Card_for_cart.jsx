@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
-import { deleteFromCart } from "../URLs";
+import { wishlistDeleteURL } from "../URLs";
 import jwtToken from "./custom_hooks/getToken";
 import { connect } from "react-redux";
 
@@ -54,7 +54,7 @@ function CardForCart({
 
 	const deleteFromCart = async () => {
 		try {
-			const { status } = await axios.delete(deleteFromCartUrl(cart_id), {
+			const { status } = await axios.delete(wishlistDeleteURL(cart_id), {
 				headers: { token: jwtToken() },
 			});
 			if (status === 200) {
