@@ -3,6 +3,7 @@ const dogs = require('./dogs');
 const login = require('./login');
 const wishlist = require('./wishlist');
 const products = require('./products');
+const carriers = require('./carriers');
 
 
 //* List all other modules to export as router
@@ -11,5 +12,6 @@ module.exports = app => {
   app.use('/dogs', dogs),
   app.use('/login', login),
   app.use('/wishlist', wishlist),
-  app.use('/products', products)
+  app.use('/products', products),
+  app.use('/carriers', carriers)
 };
