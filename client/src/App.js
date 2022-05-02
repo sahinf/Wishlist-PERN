@@ -35,13 +35,13 @@ function App() {
     );
   }
 
+  //! Non nested login path works, nested does not work!
   return (
     <div className="App">
       <Navbar display={display} />
       <Routes>
+        <Route path='/login' element={<Login DisplaySetNone={DisplaySetNone} />} />
         <Route path='/' element={<Homepage DisplaySetFlex={DisplaySetFlex} />}>
-          {/* <Route path='login' element={<TestComponent />} /> */}
-          <Route path='/login' element={<Login DisplaySetNone={DisplaySetNone} />} />
         </Route>
       </Routes>
     </div>
