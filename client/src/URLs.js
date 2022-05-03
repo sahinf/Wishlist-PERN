@@ -35,6 +35,12 @@ const getAllProductsURL = () => `${productsURL()}/all`;
 
 const getOneProductURL = () => (product_id) => `${productsURL()}/:${product_id}`;
 
+//***** CARRIERS API URLS */
+const carriersURL = `${domainName}/carriers`;
+
+const getAllCarriersURL = () => `${carriersURL}`
+
+
 
 export {
   requestDomainName,
@@ -46,5 +52,6 @@ export {
   wishlistInsertURL,
   wishlistDeleteURL,
   getAllProductsURL,
-  getOneProductURL
+  getOneProductURL,
+  getAllCarriersURL
 }

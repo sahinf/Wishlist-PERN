@@ -16,6 +16,8 @@ router.get('/', async (req, res) => {
       res.status(404).json('Server: No carriers in Carrier table')
     }
 
+    // res.status(200).send(data.rows);
+    // const obj = data.rows;
     res.status(200).json(data.rows);
 
   } catch (e) {

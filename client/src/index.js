@@ -14,13 +14,13 @@ import './bootstrap.min.css';
 //* accessible by ALL componenets nested within it
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<React.StrictMode>
+	// <React.StrictMode>
 		<BrowserRouter>
 			<Provider store={store}>
 				<App />
 			</Provider>
 		</BrowserRouter>
-	</React.StrictMode>,
+	// </React.StrictMode>,
 );
 
 // import React from 'react';

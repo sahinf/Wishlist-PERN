@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../css/Navbar.css";
 
 //* ADDING FEATURE SETS NOW
+import CarrierShipping from "./CarrierShipping";
 
 //! Used to be Navbar = (props) => {}
 const Navbar = (props) => {
@@ -100,11 +101,8 @@ const Navbar = (props) => {
 				{/* <b>account</b> */}
 			</div>
 
-			{/* <div className="options account">
-				<small>orders</small>
+			<NavLink to="/carrier-shipping" className="options account">Carrier Shipping</NavLink>
 
-				<b>&amp; Return</b>
-			</div> */}
 
 			{/* //* Link to Wishlist */}
 			<NavLink to="/am/cart" className="options ForCart">

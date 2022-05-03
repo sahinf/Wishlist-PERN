@@ -1,0 +1,23 @@
+import { FaTimes } from 'react-icons/fa'
+
+const Carrier = ({ carrier, onDelete, onToggle }) => {
+// const Carrier = ({ carrier, onDelete }) => {
+    console.log("In Carrier: ", JSON.stringify(carrier));
+    return (
+        <div
+            className={`carrier ${carrier.carrier_phone && 'phone'}`}
+            onDoubleClick={() => onToggle(carrier.id)}
+        >
+            <h3>
+                {carrier.carrier_name}{' '}
+                <FaTimes
+                    style={{ color: 'red', cursor: 'pointer' }}
+                    onClick={() => onDelete(carrier.carrier_id)}
+                />
+            </h3>
+            <p>{carrier.carrier_phone}</p>
+        </div>
+    )
+}
+
+export default Carrier
