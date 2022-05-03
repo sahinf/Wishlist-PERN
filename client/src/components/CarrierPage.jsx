@@ -20,13 +20,16 @@ const CarrierShipping = (props) => {
 
     //* Add carrier, OR update existing!
     const addCarrier = async (carrier) => {
-        const { data } = await axios({
-            method: "put",
-            url: carriersURL(),
-            data: carrier
-        });
-        console.log(data);
-        setCarriers(...carriers, data);
+        try {
+            const { data } = await axios({
+                method: "put",
+                url: carriersURL(),
+                data: carrier
+            });
+            setCarriers(...carriers, data);
+        } catch (e) {
+            console.error(e.message);
+        }
     }
 
     const deleteCarrier = async (carrier) => {
@@ -37,6 +40,7 @@ const CarrierShipping = (props) => {
                 data: carrier
             });
             console.log(data);
+            //* For some reason, we don't need to setCarriers here after deleting, 
         } catch (e) {
             console.error(e.message);
         }
