@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Navigate, BrowserRouter, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Homepage from "./components/Homepage";
-import OneItemPage from "./components/OneItemPage";
-import Cart from "./components/AmazonCart";
 import Login from "./components/Login";
 import "./css/App.css";
 

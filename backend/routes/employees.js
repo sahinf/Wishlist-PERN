@@ -1,5 +1,4 @@
 const Router = require('express-promise-router');
-const { userIdURL } = require('../../client/src/URLs');
 
 const db = require('../db');
 

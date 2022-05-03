@@ -40,6 +40,8 @@ const carriersURL = () => `${domainName}/carriers`;
 
 const getAllCarriersURL = () => `${carriersURL()}`
 
+//***** EMPLOYEES API URLS */
+const employeesURL = () => `${domainName}/employees`
 
 export {
   requestDomainName,
@@ -53,5 +55,6 @@ export {
   getAllProductsURL,
   getOneProductURL,
   carriersURL,
-  getAllCarriersURL
+  getAllCarriersURL,
+  employeesURL
 }
