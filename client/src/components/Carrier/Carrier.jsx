@@ -7,7 +7,7 @@ const Carrier = ({ carrier, onDelete, onToggle }) => {
             onDoubleClick={() => onToggle(carrier.id)}
         >
             <h3>
-                {carrier.carrier_name}{' '}
+                {`${carrier.carrier_id}: ${carrier.carrier_name}`}
                 <FaTimes
                     style={{ color: 'red', cursor: 'pointer' }}
                     onClick={() => onDelete(carrier.carrier_id)}

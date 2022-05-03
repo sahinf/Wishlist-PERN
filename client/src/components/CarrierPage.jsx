@@ -2,7 +2,7 @@
 import '../css/Common.css'
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { getAllCarriersURL } from "../URLs"
+import { carriersURL, getAllCarriersURL } from "../URLs"
 import Carriers from './Carrier/Carriers'
 import Header from './Carrier/Header'
 import { Route, Routes } from 'react-router-dom'
@@ -12,27 +12,28 @@ import AddCarrier from './Carrier/AddCarrier'
 const CarrierShipping = (props) => {
 
     const [showAddCarrier, setShowAddCarrier] = useState(false);
-
-    // const [carriers, setCarriers] = useState({ id: "", name: "", phone: "" });
     const [carriers, setCarriers] = useState([]);
 
     const onClickAdd = () => {
 
     }
 
-    const addCarrier = () => {
+    //* Add carrier, OR update existing!
+    const addCarrier = async (carrier) => {
+        const { data } = await axios({
+            method: "put",
+            url: carriersURL(),
+            data: carrier
+        });
+        console.log(data);
+        setCarriers(...carriers, data);
+    }
+
+    const deleteCarrier = (carrier) => {
 
     }
 
-    const deleteCarrier = (id) => {
-
-    }
-
-    const updateCarrier = () => {
-
-    }
-
-
+    //* After addCarier is called, refresh carrier list! WORKS YAY
     useEffect(() => {
         const getCarriers = async () => {
             try {
@@ -43,12 +44,11 @@ const CarrierShipping = (props) => {
             }
         }
         getCarriers();
-    }, [])
+    }, [addCarrier])
 
     const onToggle = () => {
         console.log("Clicked a carrier!")
     }
-
     return (
         <div className='container'>
             <Header
