@@ -3,17 +3,17 @@ import { FaTimes } from 'react-icons/fa'
 const Item = ({ item, onDelete, onToggle }) => {
     return (
         <div
-            className={`Employee ${item.users_id && 'phone'}`}
+            // className={`Employee ${item.users_id && 'phone'}`}
             onDoubleClick={() => onToggle(item.users_id)}
         >
             <h3>
-                {`${item.users_id}: ${item.users_id}`}
+                {`${item.one}: ${item.two}`}
                 <FaTimes
                     style={{ color: 'red', cursor: 'pointer' }}
                     onClick={() => onDelete(item)}
                 />
             </h3>
-            <p>{item.employee_fname}</p>
+            <p>{item.three}</p>
         </div>
     )
 }

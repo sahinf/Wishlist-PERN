@@ -1,4 +1,4 @@
-import Item from "./Employee"
+import Item from "./Item"
 
 const Items = ({ items, onDelete, onToggle }) => {
     return (

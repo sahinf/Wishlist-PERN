@@ -1,23 +1,23 @@
 import { useState } from 'react'
 
 const AddEmployee = ({ onAdd }) => {
-  const [carrier_id, setCarrierID] = useState('')
-  const [carrier_name, setCarrierName] = useState('')
-  const [carrier_phone, setPhoneNum] = useState('')
+  const [users_id, setUsersID] = useState('')
+  const [employee_fname, setFname] = useState('')
+  const [employee_lname, setLname] = useState('')
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    if (!carrier_name) {
+    if (!employee_fname) {
       alert('Please add a carrier')
       return
     }
 
-    onAdd({ carrier_id, carrier_name, carrier_phone })
+    onAdd({ users_id, employee_fname, employee_lname })
 
-    // setCarrierID('')
-    // setCarrierName('')
-    // setPhoneNum('')
+    setUsersID('')
+    setFname('')
+    setLname('')
   }
 
   return (
@@ -26,28 +26,28 @@ const AddEmployee = ({ onAdd }) => {
       <div className='form-control'>
         <label>Carrier ID</label>
         <input
-          type='carrier_name'
-          placeholder='Carrier ID'
-          value={carrier_id}
-          onChange={(e) => setCarrierID(e.target.value)}
+          type='employee_fname'
+          placeholder='Employee ID (20-40)'
+          value={users_id}
+          onChange={(e) => setUsersID(e.target.value)}
         />
       </div>
       <div className='form-control'>
-        <label>Carrier Name</label>
+        <label>Employee First Name</label>
         <input
-          type='carrier_name'
-          placeholder='Carrier Name'
-          value={carrier_name}
-          onChange={(e) => setCarrierName(e.target.value)}
+          type='employee_fname'
+          placeholder='First Name'
+          value={employee_fname}
+          onChange={(e) => setFname(e.target.value)}
         />
       </div>
       <div className='form-control'>
-        <label>Phone Number</label>
+        <label>Employee Last Name</label>
         <input
-          type='carrier_name'
-          placeholder='xxx-xxx-xxxx'
-          value={carrier_phone}
-          onChange={(e) => setPhoneNum(e.target.value)}
+          type='employee_fname'
+          placeholder='Last Name'
+          value={employee_lname}
+          onChange={(e) => setLname(e.target.value)}
         />
       </div>
       <input type='submit' value='Save Task' className='btn btn-block' />

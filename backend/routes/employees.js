@@ -34,7 +34,7 @@ router.put('/', async (req, res) => {
     }
 
     const test = await db.query('SELECT * FROM employee WHERE users_id=$1',[users_id]);
-
+  
     //* INSERT: Employee ID doesn't exist
     if (test.rowCount < 1) {
       await db.query('INSERT INTO employee (users_id, employee_fname, employee_lname) VALUES ($1, $2, $3)',[users_id, employee_fname, employee_lname]);

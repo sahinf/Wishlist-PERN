@@ -34,7 +34,7 @@ mountRoutes(app);
 app.use('*', (req, res) => {
   res.sendStatus('404').send('Page not found');
 });
-app.listen(SERVER_PORT, () => {
+app.listen(SERVER_PORT, '127.0.0.1', () => {
   console.log(`Server listening on ${SERVER_PORT}`);
 })
 
