@@ -1,17 +1,9 @@
-/**
- * 
-Create carrier
-Read/check carrier status
-Update carrier info
-Delete carrier
- */
 
+import '../css/Common.css'
 import axios from "axios"
-
 import { useEffect, useState } from "react"
-
 import { getAllCarriersURL } from "../URLs"
-import Carrier from "./misc/Carrier";
+import Carriers from './misc/Carriers'
 
 
 const CarrierShipping = (props) => {
@@ -41,7 +33,6 @@ const CarrierShipping = (props) => {
             try {
                 const { data } = await axios.get(getAllCarriersURL())
                 setCarriers(data);
-                console.log('Carriers data:', data);
             } catch (error) {
                 console.error(error.message);
             }
@@ -52,12 +43,23 @@ const CarrierShipping = (props) => {
     const onToggle = () => {
         console.log("Clicked a carrier!")
     }
-    // console.log(carriers);
+
     return (
-        <>
-            {carriers.map( (carrier, index) => (
-                <Carrier key={index} carrier={carrier} onDelete={deleteCarrier} onToggle={onToggle} />
-            ) )}
+        <div className='container'>
+            <>
+                {/* {showAddTask && <AddTask onAdd={addTask} />} */}
+
+                {carriers.length > 0 ? (
+                    <Carriers
+                        carriers={carriers}
+                        onDelete={deleteCarrier}
+                        onToggle={onToggle}
+                    />
+                ) : (
+                    'No Tasks To Show'
+                )}
+
+            </>
             {/* <form className='add-form' onSubmit={onSubmit}>
                 <div className='form-control'>
                     <label>Task</label>
@@ -90,7 +92,7 @@ const CarrierShipping = (props) => {
                 <input type='submit' value='Save Task' className='btn btn-block' />
 
             </form> */}
-        </>
+        </div>
     )
 }
 

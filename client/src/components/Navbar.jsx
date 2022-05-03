@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../css/Navbar.css";
 
 //* ADDING FEATURE SETS NOW
-import CarrierShipping from "./CarrierShipping";
+import CarrierShipping from "./CarrierPage";
 
 //! Used to be Navbar = (props) => {}
 const Navbar = (props) => {

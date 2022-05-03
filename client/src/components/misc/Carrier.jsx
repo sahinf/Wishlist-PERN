@@ -1,8 +1,6 @@
 import { FaTimes } from 'react-icons/fa'
 
 const Carrier = ({ carrier, onDelete, onToggle }) => {
-// const Carrier = ({ carrier, onDelete }) => {
-    console.log("In Carrier: ", JSON.stringify(carrier));
     return (
         <div
             className={`carrier ${carrier.carrier_phone && 'phone'}`}

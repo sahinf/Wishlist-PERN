@@ -12,7 +12,7 @@ import { useDisplayToggle } from "./components/custom_hooks/navDisplay";
 
 import activeUser from "./components/custom_hooks/activeUser";
 import Profile from "./components/Profile";
-import CarrierShipping from "./components/CarrierShipping";
+import CarrierShipping from "./components/CarrierPage";
 
 function App() {
   const [user, setUser] = useState({});
