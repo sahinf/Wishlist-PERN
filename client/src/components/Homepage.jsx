@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import Carousel from "./Carousel";
-import Card from "./Card";
 import Loading from "./Loading";
 import Footer from "./Footer";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import { getAllProductsURL } from "./../URLs";
-import { Outlet } from "react-router-dom";
 import "../css/Homepage.css";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -58,7 +55,7 @@ function Homepage(props) {
 				<>
 					{/* <Carousel /> */}
 					<div className="Homepage ">
-						<div className="ItemContainer upperItemContainer ">
+						{/* <div className="ItemContainer upperItemContainer ">
 							{firstArrEle.map((arg) => (
 								<Card key={uuidv4()} {...arg} />
 							))}
@@ -73,7 +70,7 @@ function Homepage(props) {
 							{thirdArrEle.map((arg) => (
 								<Card key={uuidv4()} {...arg} />
 							))}
-						</div>
+						</div> */}
 					</div>
 					<Footer />
 				</>
