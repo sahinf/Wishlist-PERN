@@ -4,7 +4,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { carriersURL, getAllCarriersURL } from "../URLs"
 import Carriers from './Carrier/Carriers'
-import Header from './Carrier/Header'
+import Header from './Header'
 import { Route, Routes } from 'react-router-dom'
 import AddCarrier from './Carrier/AddCarrier'
 
