@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const addItem = ({ onAdd }) => {
+const AddEmployee = ({ onAdd }) => {
   const [carrier_id, setCarrierID] = useState('')
   const [carrier_name, setCarrierName] = useState('')
   const [carrier_phone, setPhoneNum] = useState('')
@@ -55,4 +55,4 @@ const addItem = ({ onAdd }) => {
   )
 }
 
-export default addItem
+export default AddEmployee

@@ -1,19 +1,19 @@
 import { FaTimes } from 'react-icons/fa'
 
-const Item = ({ carrier, onDelete, onToggle }) => {
+const Item = ({ item, onDelete, onToggle }) => {
     return (
         <div
-            className={`carrier ${carrier.carrier_phone && 'phone'}`}
-            onDoubleClick={() => onToggle(carrier.id)}
+            className={`Employee ${item.users_id && 'phone'}`}
+            onDoubleClick={() => onToggle(item.users_id)}
         >
             <h3>
-                {`${carrier.carrier_id}: ${carrier.carrier_name}`}
+                {`${item.users_id}: ${item.users_id}`}
                 <FaTimes
                     style={{ color: 'red', cursor: 'pointer' }}
-                    onClick={() => onDelete(carrier)}
+                    onClick={() => onDelete(item)}
                 />
             </h3>
-            <p>{carrier.carrier_phone}</p>
+            <p>{item.employee_fname}</p>
         </div>
     )
 }

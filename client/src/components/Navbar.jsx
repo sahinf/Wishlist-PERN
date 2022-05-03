@@ -82,9 +82,6 @@ const Navbar = (props) => {
 				/>
 			</NavLink>
 
-
-			{/* </div> */}
-
 			{/* //! DISABLED SEARCH BAR */}
 			{/* <div className="search" tabindex="1">
 				<input type="text" />
@@ -93,7 +90,6 @@ const Navbar = (props) => {
 				</button>
 			</div> */}
 
-			{/* <NavLink to="/login">Login</NavLink> */}
 			{/* //! DISABLED OLD LINK */}
 			<div className="options account">
 				{currentUser.name ? (<small> Hello, <span>{currentUser.name}</span> </small>)
@@ -102,6 +98,8 @@ const Navbar = (props) => {
 			</div>
 
 			<NavLink to="/carrier-shipping" className="options account">Carrier Shipping</NavLink>
+
+			<NavLink to="/employees" className="options account">Employees</NavLink>
 
 
 			{/* //* Link to Wishlist */}

@@ -10,7 +10,8 @@ import { useDisplayToggle } from "./components/custom_hooks/navDisplay";
 
 import activeUser from "./components/custom_hooks/activeUser";
 import Profile from "./components/Profile";
-import CarrierShipping from "./components/CarrierPage";
+import CarrierPage from "./components/CarrierPage";
+import EmployeePage from "./components/EmployeePage"
 
 function App() {
   const [user, setUser] = useState({});
@@ -43,7 +44,8 @@ function App() {
         <Route index element={<Homepage DisplaySetFlex={DisplaySetFlex} />} />
         <Route path='/login' element={<Login DisplaySetNone={DisplaySetNone} />} />
         <Route path='/profile' element={<Profile DisplaySetFlex={DisplaySetFlex}/>} />
-        <Route path='/carrier-shipping/*' element={<CarrierShipping DisplaySetFlex={DisplaySetFlex}/>} />
+        <Route path='/carrier-shipping/*' element={<CarrierPage />} />
+        <Route path='/employees/*' element={<EmployeePage />} />
       </Routes>
     </div >
   );

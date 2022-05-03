@@ -3,11 +3,11 @@ import '../css/Common.css'
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { carriersURL, getAllCarriersURL } from "../URLs"
-import Carriers from './Carrier/Carriers'
 import Header from './Header'
 import { Route, Routes } from 'react-router-dom'
-import AddCarrier from './Carrier/AddCarrier'
 
+import AddCarrier from './Carrier/AddCarrier'
+import Carriers from './Carrier/Carriers'
 
 const CarrierShipping = (props) => {
 
@@ -17,7 +17,6 @@ const CarrierShipping = (props) => {
     //* Add carrier, OR update existing!
     const addCarrier = async (carrier) => {
         try {
-            console.log('addCarrer', carrier)
             const { data } = await axios({
                 method: "put",
                 url: carriersURL(),
@@ -45,6 +44,7 @@ const CarrierShipping = (props) => {
 
     //* After addCarier is called, refresh carrier list! WORKS YAY
     useEffect(() => {
+        console.log("use effect called in carrier")
         const getCarriers = async () => {
             try {
                 const { data } = await axios.get(getAllCarriersURL())
@@ -54,7 +54,7 @@ const CarrierShipping = (props) => {
             }
         }
         getCarriers();
-    }, [addCarrier])
+    }, [])
 
     const onToggle = () => {
         console.log("Clicked a carrier!")
@@ -65,6 +65,7 @@ const CarrierShipping = (props) => {
                 onAdd={() => setShowAddCarrier(!showAddCarrier)}
                 showAdd={showAddCarrier}
                 title='Carriers'
+                path='/carrier-shipping'
             />
             <Routes>
                 <Route

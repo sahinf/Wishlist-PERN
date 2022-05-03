@@ -2,13 +2,13 @@ import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 import Button from './utilities/Button'
 
-const Header = ({ title, onAdd, showAdd }) => {
+const Header = ({ title, onAdd, showAdd, path }) => {
   const location = useLocation()
 
   return (
     <header className='header'>
       <h1>{title}</h1>
-      {location.pathname === '/carrier-shipping' && (
+      {location.pathname === path && (
         <Button
           color={showAdd ? 'red' : 'green'}
           text={showAdd ? 'Close' : 'Add'}
