@@ -14,13 +14,10 @@ const CarrierShipping = (props) => {
     const [showAddCarrier, setShowAddCarrier] = useState(false);
     const [carriers, setCarriers] = useState([]);
 
-    const onClickAdd = () => {
-
-    }
-
     //* Add carrier, OR update existing!
     const addCarrier = async (carrier) => {
         try {
+            console.log('addCarrer', carrier)
             const { data } = await axios({
                 method: "put",
                 url: carriersURL(),

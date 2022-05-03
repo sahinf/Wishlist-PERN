@@ -17,37 +17,37 @@ router.get('/', async (req, res) => {
       res.status(404).json('Server: No carriers in Carrier table')
     }
 
-    // res.status(200).send(data.rows);
-    // const obj = data.rows;
     res.status(200).json(data.rows);
 
   } catch (e) {
     console.error(e.message);
-    res.status(501).json("Sever: Error in getting all carriers");
+    res.status(500).json("Sever: Error in getting all carriers");
   }
 });
 
 //* CREATE or UPDATE carrier
 router.put('/', async (req, res) => {
   try {
-    const { carrier_name, carrier_phone } = req.body;
-    if (!carrier_name || !carrier_phone) {
-      res.status(401).json("Server: No input provided");
+    const { carrier_id, carrier_name, carrier_phone } = req.body;
+    if (!carrier_id || !carrier_name || !carrier_phone) {
+      res.status(400).json("Server: No input provided for carrier query");
     }
 
-    const test = await db.query('SELECT * FROM carrier WHERE carrier_name=$1', [carrier_name]);
+    const test = await db.query('SELECT * FROM carrier WHERE carrier_id=$1', [carrier_id]);
+
+    //* INSERT: Carrier ID doesn't exist
     if (test.rowCount < 1) {
-      await db.query('INSERT INTO carrier (carrier_name, carrier_phone) VALUES ($1, $2)', [carrier_name, carrier_phone]);
+      await db.query('INSERT INTO carrier (carrier_id, carrier_name, carrier_phone) VALUES ($1, $2, $3)', [carrier_id, carrier_name, carrier_phone]);
       res.status(200).json(`Carrier ${carrier_name} inserted into table with phone number ${carrier_phone}`)
     }
     
-    //* Carrier NAME exists in table, update it
-    await db.query('UPDATE carrier SET carrier_phone=$1 WHERE carrier_name=$2',[carrier_phone, carrier_name]);
+    //* UPDATE: Carrier NAME exists in table
+    await db.query('UPDATE carrier SET carrier_name=$1,carrier_phone=$2 WHERE carrier_id=$3',[ carrier_name, carrier_phone, carrier_id]);
     res.status(200).json(`Carrier ${carrier_name} was updated with phone number ${carrier_phone}`);
 
   } catch (e) {
     console.error(e.message);
-    res.status(501).json("Sever: Error in adding carrier");
+    res.status(500).json("Sever error in adding/updating carrier");
   }
 })
 

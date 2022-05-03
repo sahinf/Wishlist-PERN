@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 const AddCarrier = ({ onAdd }) => {
+  const [carrier_id, setCarrierID] = useState('')
   const [carrier_name, setCarrierName] = useState('')
   const [carrier_phone, setPhoneNum] = useState('')
 
@@ -12,16 +13,27 @@ const AddCarrier = ({ onAdd }) => {
       return
     }
 
-    onAdd({ carrier_name, carrier_phone })
+    onAdd({ carrier_id, carrier_name, carrier_phone })
 
-    setCarrierName('')
-    setPhoneNum('')
+    // setCarrierID('')
+    // setCarrierName('')
+    // setPhoneNum('')
   }
 
   return (
+    
     <form className='add-form' onSubmit={onSubmit}>
       <div className='form-control'>
-        <label>Carrier</label>
+        <label>Carrier ID</label>
+        <input
+          type='carrier_name'
+          placeholder='Carrier ID'
+          value={carrier_id}
+          onChange={(e) => setCarrierID(e.target.value)}
+        />
+      </div>
+      <div className='form-control'>
+        <label>Carrier Name</label>
         <input
           type='carrier_name'
           placeholder='Carrier Name'
