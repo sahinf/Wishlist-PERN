@@ -45,7 +45,7 @@ function App() {
         <Route index element={<Homepage DisplaySetFlex={DisplaySetFlex} />} />
         <Route path='/login' element={<Login DisplaySetNone={DisplaySetNone} />} />
         <Route path='/profile' element={<Profile DisplaySetFlex={DisplaySetFlex}/>} />
-        <Route path='/carrier-shipping' element={<CarrierShipping DisplaySetFlex={DisplaySetFlex}/>} />
+        <Route path='/carrier-shipping/*' element={<CarrierShipping DisplaySetFlex={DisplaySetFlex}/>} />
       </Routes>
     </div >
   );

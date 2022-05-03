@@ -8,6 +8,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+  background-color: #388bb5;
 }
 
 .container {
@@ -54,6 +55,8 @@ body {
   width: 100%;
 }
 
+
+/* BURDAYIM  */
 .task {
   background: #f4f4f4;
   margin: 5px;
@@ -73,6 +76,10 @@ body {
 
 .add-form {
   margin-bottom: 40px;
+}
+
+.add-form .form-control{
+  background-color: #868a8c;
 }
 
 .form-control {

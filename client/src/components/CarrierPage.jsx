@@ -3,10 +3,15 @@ import '../css/Common.css'
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { getAllCarriersURL } from "../URLs"
-import Carriers from './misc/Carriers'
+import Carriers from './Carrier/Carriers'
+import Header from './Carrier/Header'
+import { Route, Routes } from 'react-router-dom'
+import AddCarrier from './Carrier/AddCarrier'
 
 
 const CarrierShipping = (props) => {
+
+    const [showAddCarrier, setShowAddCarrier] = useState(false);
 
     // const [carriers, setCarriers] = useState({ id: "", name: "", phone: "" });
     const [carriers, setCarriers] = useState([]);
@@ -46,52 +51,30 @@ const CarrierShipping = (props) => {
 
     return (
         <div className='container'>
-            <>
-                {/* {showAddTask && <AddTask onAdd={addTask} />} */}
-
-                {carriers.length > 0 ? (
-                    <Carriers
-                        carriers={carriers}
-                        onDelete={deleteCarrier}
-                        onToggle={onToggle}
-                    />
-                ) : (
-                    'No Tasks To Show'
-                )}
-
-            </>
-            {/* <form className='add-form' onSubmit={onSubmit}>
-                <div className='form-control'>
-                    <label>Task</label>
-                    <input
-                        type='text'
-                        placeholder='Add Task'
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                    />
-                </div>
-                <div className='form-control'>
-                    <label>Day & Time</label>
-                    <input
-                        type='text'
-                        placeholder='Add Day & Time'
-                        value={day}
-                        onChange={(e) => setDay(e.target.value)}
-                    />
-                </div>
-                <div className='form-control form-control-check'>
-                    <label>Set Reminder</label>
-                    <input
-                        type='checkbox'
-                        checked={reminder}
-                        value={reminder}
-                        onChange={(e) => setReminder(e.currentTarget.checked)}
-                    />
-                </div>
-
-                <input type='submit' value='Save Task' className='btn btn-block' />
-
-            </form> */}
+            <Header
+                onAdd={() => setShowAddCarrier(!showAddCarrier)}
+                showAdd={showAddCarrier}
+                title='Carriers'
+            />
+            <Routes>
+                <Route
+                    path='/'
+                    element={
+                        <>
+                            {showAddCarrier && <AddCarrier onAdd={addCarrier} />}
+                            {carriers.length > 0 ? (
+                                <Carriers
+                                    carriers={carriers}
+                                    onDelete={deleteCarrier}
+                                    onToggle={onToggle}
+                                />
+                            ) : (
+                                'No Carriers To Show'
+                            )}
+                        </>
+                    }
+                />
+            </Routes >
         </div>
     )
 }

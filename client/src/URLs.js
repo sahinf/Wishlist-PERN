@@ -40,6 +40,8 @@ const carriersURL = `${domainName}/carriers`;
 
 const getAllCarriersURL = () => `${carriersURL}`
 
+const addCarrierURL = () => `${carriersURL}/add`
+
 
 
 export {
