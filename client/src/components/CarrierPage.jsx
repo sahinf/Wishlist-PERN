@@ -29,8 +29,17 @@ const CarrierShipping = (props) => {
         setCarriers(...carriers, data);
     }
 
-    const deleteCarrier = (carrier) => {
-
+    const deleteCarrier = async (carrier) => {
+        try {
+            const { data } = await axios({
+                method: "delete",
+                url: carriersURL(),
+                data: carrier
+            });
+            console.log(data);
+        } catch (e) {
+            console.error(e.message);
+        }
     }
 
     //* After addCarier is called, refresh carrier list! WORKS YAY

@@ -10,7 +10,7 @@ const Carrier = ({ carrier, onDelete, onToggle }) => {
                 {`${carrier.carrier_id}: ${carrier.carrier_name}`}
                 <FaTimes
                     style={{ color: 'red', cursor: 'pointer' }}
-                    onClick={() => onDelete(carrier.carrier_id)}
+                    onClick={() => onDelete(carrier)}
                 />
             </h3>
             <p>{carrier.carrier_phone}</p>
