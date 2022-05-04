@@ -1,10 +1,6 @@
-const e = require('cors');
 const Router = require('express-promise-router');
-
 const db = require('../db');
-
 const router = new Router();
-
 module.exports = router;
 
 //* Get all products from database
@@ -19,7 +15,7 @@ router.get('/all', async (req, res) => {
 
   } catch (e) {
     console.error(e.message);
-    res.status(501).json('Server query error: /products/all');
+    res.status(501).json('Server error in getting all products');
   }
 });
 

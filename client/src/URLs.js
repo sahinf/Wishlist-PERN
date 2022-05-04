@@ -12,6 +12,8 @@ const requestDomainName = () => {
 }
 
 const domainName = requestDomainName();
+//***** GLOBAL CRUD API */
+const genericCRUD = () => `${domainName}/CRUD`;
 
 //* All users API
 const usersURL = () => `${domainName}/users`;
@@ -23,7 +25,7 @@ const userIdURL = (userId) => `${usersURL()}/${userId}`;
 const loginURL = () => `${domainName}/login`;
 
 //***** WIISHLIST API URLs */
-const wishlistURL = () => `${domainName}/wishlist/`;
+const wishlistURL = () => `${domainName}/wishlist`;
 
 const wishlistUser = (user_id) => `${wishlistURL()}/${user_id}`;
 
@@ -47,14 +49,14 @@ const carriersURL = () => `${domainName}/carriers`;
 const employeesURL = () => `${domainName}/employees`;
 
 //***** MANUFACTURER API URLS */
-const manufacturerURL = () => `${domainName}/manufacturers`;
-//! Notice that they're all the same. We are using GET, PUT, and DEL requests to the same API route
-const getManURL = () => manufacturerURL();
+const manufacturerURL = () => `${genericCRUD()}`;
+const getManURL = (table) => `${manufacturerURL()}/${table}`;
 const putManURL = () => manufacturerURL();
 const delManURL = () => manufacturerURL();
 
 export default {
   requestDomainName,
+  genericCRUD,
   usersURL,
   userIdURL,
   loginURL,

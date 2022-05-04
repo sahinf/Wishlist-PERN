@@ -1,9 +1,6 @@
 const Router = require('express-promise-router');
-
 const db = require('../db');
-
 const router = new Router();
-
 module.exports = router;
 
 //* Get all employees
@@ -30,6 +27,7 @@ router.put('/', async (req, res) => {
     const {users_id, employee_fname, employee_lname } = req.body;
 
     if (!users_id || !employee_fname || !employee_lname) {
+      //TODO change employees to use generics 
       res.status(400).json('Server: no input provided for employee query');
     }
 

@@ -5,17 +5,26 @@ import { useEffect, useState } from "react"
 import Header from '../Header'
 import { Route, Routes } from 'react-router-dom'
 
-import AddItem from './GenericAddItem'
+// import AddItem from './GenericAddItem'
 import Item from './GenericItem'
 import { green } from '@material-ui/core/colors'
 
 const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
 
+    // for (const [key, value] of Object.entries(obj)) {
+    //     console.log(`${key}: ${value}`);
+    // }
+
+    // let obj = genericInfo.tableObj;
+    // const setObj = (getResponse) => {
+    //     obj = getResponse;
+    // }
+    // console.log(`obj: `, obj);
+
     const [showAdd, setShowAdd] = useState(false);
     let [items, setItems] = useState([]);
 
     const { displayInfo } = genericInfo;
-    console.log(displayInfo)
     items.forEach(e => {
         e.one = e[displayInfo.one];
         e.two = e[displayInfo.two];
@@ -26,31 +35,43 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
         const getItems = async () => {
             try {
                 const itemsFromServer = await fetchItems();
+                console.log(itemsFromServer)
                 setItems(itemsFromServer);
-            } catch (error) {
-                console.error(error.message);
+            } catch (e) {
+                alert(`Error: ${e?.response?.data}`)
             }
         }
         getItems();
     }, [])
 
     const { urls } = genericInfo;
-    console.log(urls);
     //* Fetch all data from URL
     const fetchItems = async () => {
-        const { data } = await axios.get(urls.getURL)
+        const { data } = await axios({
+            method: "get",
+            url: urls.getURL,
+            body: {
+                table : 'manufacturer'
+            }
+        })
         return data;
     }
 
     //* Add OR update existing!
+    const {table, pk} = genericInfo.crud;
     const addItem = async (item) => {
         try {
             const { data } = await axios({
                 method: "put",
                 url: urls.putURL,
-                data: item
+                data: {
+                    items : {
+                        ...item
+                    },
+                    table,
+                    pk
+                }
             });
-            console.log(data);
             setItems([...items, item]);
         } catch (e) {
             alert(`Error: ${e?.response?.data}`)
@@ -63,7 +84,11 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
             await axios({
                 method: "delete",
                 url: urls.delURL,
-                data: item
+                data: {
+                    items : {...item},
+                    table,
+                    pk
+                }
             });
             setItems(items.filter((i) => i.users_id !== item.users_id));
         } catch (e) {
@@ -72,7 +97,7 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
     }
 
     const onToggle = () => {
-        console.log("Clicked an Item!")
+        console.log("Clicked an Item! This does nothing for now :D")
     }
     return (
         <div className='container'>
@@ -87,7 +112,7 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
                     path='/'
                     element={
                         <>
-                            {showAdd && <AddItem onAdd={addItem} addInfo={genericInfo.addInfo} />}
+                            {showAdd && <AddComponent onAdd={addItem} addInfo={genericInfo.addInfo} />}
                             {items.length > 0 ? (
                                 <>
                                     {items.map((item, index) => (

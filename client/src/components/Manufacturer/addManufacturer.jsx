@@ -1,15 +1,15 @@
 import { useState } from 'react'
 
-const AddItem = ({ onAdd, addInfo }) => {
+const AddManufacturer = ({ onAdd, addInfo }) => {
 
-  const [input1, setInput1] = useState('')
-  const [input2, setInput2] = useState('')
-  const [input3, setInput3] = useState('')
+  const [man_id, setInput1] = useState('')
+  const [seller_name, setInput2] = useState('')
+  const [users_id, setInput3] = useState('')
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    onAdd({ input1, input2, input3 })
+    onAdd({ man_id, seller_name, users_id })
 
     setInput1('')
     setInput2('')
@@ -22,27 +22,27 @@ const AddItem = ({ onAdd, addInfo }) => {
       <div className='form-control'>
         <label>{addInfo.label1}</label>
         <input
-          type='input2'
+          type='seller_name'
           placeholder={addInfo.placeholder1}
-          value={input1}
+          value={man_id}
           onChange={(e) => setInput1(e.target.value)}
         />
       </div>
       <div className='form-control'>
         <label>{addInfo.label2}</label>
         <input
-          type='input2'
+          type='seller_name'
           placeholder={addInfo.placeholder2}
-          value={input2}
+          value={seller_name}
           onChange={(e) => setInput2(e.target.value)}
         />
       </div>
       <div className='form-control'>
         <label>{addInfo.label3}</label>
         <input
-          type='input2'
+          type='seller_name'
           placeholder={addInfo.placeholder3}
-          value={input3}
+          value={users_id}
           onChange={(e) => setInput3(e.target.value)}
         />
       </div>
@@ -51,4 +51,4 @@ const AddItem = ({ onAdd, addInfo }) => {
   )
 }
 
-export default AddItem
+export default AddManufacturer
