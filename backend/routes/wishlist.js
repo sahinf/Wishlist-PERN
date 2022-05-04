@@ -65,7 +65,7 @@ router.delete('/', async (req, res) => {
     await db.query(qDelete);
   } catch (e) {
     console.error(e);
-    res.status(500).json("OOPS I MADE A POOPSIE")
+    res.status(500).json("Duplicate Key exists, please add another ")
   }
 })
 
@@ -74,7 +74,7 @@ router.put('/', async (req, res) => {
     const body = req.body;
     const { items } = body;
     console.log('putting',body)
-    await db.query(`INSERT INTO wishlist(users_id, product_id) VALUES (${items.users_id}, ${items.product_id})`)
+    await db.query(`INSERT INTO wishlist(users_id, product_id) VALUES (${items.user_id}, ${items.product_id})`)
     res.status(200).json("DONE")
   } catch (e) {
     console.error(e);
