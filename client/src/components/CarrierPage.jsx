@@ -2,13 +2,14 @@
 import '../css/Common.css'
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { carriersURL, getAllCarriersURL } from "../URLs"
+import urls from "../URLs"
 import Header from './Header'
 import { Route, Routes } from 'react-router-dom'
 
 import AddCarrier from './Carrier/AddCarrier'
-import Carriers from './Carrier/Carriers'
+import Carriers from './Carrier/Carriers' 
 
+const { carriersURL } = urls;
 const CarrierShipping = (props) => {
 
     const [showAddCarrier, setShowAddCarrier] = useState(false);
@@ -47,7 +48,7 @@ const CarrierShipping = (props) => {
         console.log("use effect called in carrier")
         const getCarriers = async () => {
             try {
-                const { data } = await axios.get(getAllCarriersURL())
+                const { data } = await axios.get(carriersURL())
                 setCarriers(data);
             } catch (error) {
                 console.error(error.message);

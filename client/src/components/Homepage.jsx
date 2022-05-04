@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-// import Carousel from "./Carousel";
 import Loading from "./Loading";
 import Footer from "./Footer";
 import axios from "axios";
-import { getAllProductsURL } from "./../URLs";
+import urls from "./../URLs";
 import "../css/Homepage.css";
 import "bootstrap/dist/css/bootstrap.css";
 
+const { getAllProductsURL } = urls;
 function Homepage(props) {
 	const { DisplaySetFlex } = props;
 	const [state, setState] = useState({ status: undefined });

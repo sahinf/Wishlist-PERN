@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-const AddEmployee = ({ onAdd }) => {
+const AddItem = ({ onAdd, addInfo }) => {
+
   const [users_id, setUsersID] = useState('')
   const [employee_fname, setFname] = useState('')
   const [employee_lname, setLname] = useState('')
@@ -21,31 +22,31 @@ const AddEmployee = ({ onAdd }) => {
   }
 
   return (
-    
+
     <form className='add-form' onSubmit={onSubmit}>
       <div className='form-control'>
-        <label>Carrier ID</label>
+        <label>{addInfo.label1}</label>
         <input
           type='employee_fname'
-          placeholder='Employee ID (20-40)'
+          placeholder={addInfo.placeholder1}
           value={users_id}
           onChange={(e) => setUsersID(e.target.value)}
         />
       </div>
       <div className='form-control'>
-        <label>Employee First Name</label>
+        <label>{addInfo.label2}</label>
         <input
           type='employee_fname'
-          placeholder='First Name'
+          placeholder={addInfo.placeholder2}
           value={employee_fname}
           onChange={(e) => setFname(e.target.value)}
         />
       </div>
       <div className='form-control'>
-        <label>Employee Last Name</label>
+        <label>{addInfo.label3}</label>
         <input
           type='employee_fname'
-          placeholder='Last Name'
+          placeholder={addInfo.placeholder3}
           value={employee_lname}
           onChange={(e) => setLname(e.target.value)}
         />
@@ -55,4 +56,4 @@ const AddEmployee = ({ onAdd }) => {
   )
 }
 
-export default AddEmployee
+export default AddItem

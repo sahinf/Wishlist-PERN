@@ -7,13 +7,14 @@ const Item = ({ item, onDelete, onToggle }) => {
             onDoubleClick={() => onToggle(item.users_id)}
         >
             <h3>
-                {`${item.one}: ${item.two}`}
+                {`${item.one}: ${item.two} ${item.three}`}
                 <FaTimes
                     style={{ color: 'red', cursor: 'pointer' }}
                     onClick={() => onDelete(item)}
                 />
             </h3>
-            <p>{item.three}</p>
+            {/* <p>{item.}</p> */}
+            <br></br>
         </div>
     )
 }

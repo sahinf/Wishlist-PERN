@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { loginURL } from '../../URLs';
+import urls from '../../URLs';
+const { loginURL } = urls;
 
 /**
  * @param {*} formData data of the form ()

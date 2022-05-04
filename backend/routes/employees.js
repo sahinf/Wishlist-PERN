@@ -43,7 +43,7 @@ router.put('/', async (req, res) => {
     }
 
     //* UPDATE: Employee ID exists in table
-    await db.query('UPDATE employee SET users_id=$1, employee_fname=$2, employee_lname=$3',[users_id, employee_fname, employee_lname]);
+    await db.query('UPDATE employee SET employee_fname=$1,employee_lname=$2 WHERE users_id=$3',[employee_fname, employee_lname, users_id]);
 
     res.status(200).json(`Employee updated with id=${users_id}, first name=${employee_fname}, last name=${employee_lname}`);
     
@@ -56,6 +56,7 @@ router.put('/', async (req, res) => {
 //* REMOVE employee
 router.delete('/', async (req, res) => {
   try {
+    console.log('Deleting', req.body)
     const {users_id} = req.body;
     if (!users_id) {
       res.status(401).json(`Server: no input provided`);

@@ -43,12 +43,17 @@ const getOneProductURL = () => (product_id) => `${productsURL()}/:${product_id}`
 //***** CARRIERS API URLS */
 const carriersURL = () => `${domainName}/carriers`;
 
-const getAllCarriersURL = () => `${carriersURL()}`
-
 //***** EMPLOYEES API URLS */
-const employeesURL = () => `${domainName}/employees`
+const employeesURL = () => `${domainName}/employees`;
 
-export {
+//***** MANUFACTURER API URLS */
+const manufacturerURL = () => `${domainName}/manufacturers`;
+//! Notice that they're all the same. We are using GET, PUT, and DEL requests to the same API route
+const getManURL = () => manufacturerURL();
+const putManURL = () => manufacturerURL();
+const delManURL = () => manufacturerURL();
+
+export default {
   requestDomainName,
   usersURL,
   userIdURL,
@@ -60,6 +65,8 @@ export {
   getAllProductsURL,
   getOneProductURL,
   carriersURL,
-  getAllCarriersURL,
-  employeesURL
+  employeesURL,
+  getManURL,
+  putManURL,
+  delManURL,
 }

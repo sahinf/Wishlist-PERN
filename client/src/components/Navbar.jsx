@@ -4,13 +4,12 @@ import activeUser from "./custom_hooks/activeUser";
 import token from "./custom_hooks/getToken";
 import axios from "axios";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { wishlistCountURL } from "../URLs";
+import urls from "../URLs";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
 import "../css/Navbar.css";
 
-//* ADDING FEATURE SETS NOW
-import CarrierShipping from "./CarrierPage";
+const { wishlistCountURL } = urls;
 
 //! Used to be Navbar = (props) => {}
 const Navbar = (props) => {
@@ -48,7 +47,7 @@ const Navbar = (props) => {
 			//* Get user_id from token in local storage
 			const user = await activeUser();
 			console.log("navbar user: ", user);
-			
+
 
 			setCurrentUser({ ...user });
 			console.log(JSON.stringify(currentUser));
@@ -100,6 +99,8 @@ const Navbar = (props) => {
 			<NavLink to="/carrier-shipping" className="options account">Carrier Shipping</NavLink>
 
 			<NavLink to="/employees" className="options account">Employees</NavLink>
+
+			<NavLink to="/manufacturer" className="options account">Manufacturers</NavLink>
 
 
 			{/* //* Link to Wishlist */}
