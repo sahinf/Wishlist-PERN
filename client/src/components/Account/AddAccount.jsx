@@ -9,7 +9,6 @@ const AddComplaint = ({ onAdd, genericInfo }) => {
         
         onAdd({ users_id : genericInfo.user, user_password})
         setInput1('')
-        // setInput2('')
     }
 
     return (
@@ -18,13 +17,13 @@ const AddComplaint = ({ onAdd, genericInfo }) => {
             <div className='form-control'>
                 <label>Choose your new password</label>
                 <input
-                    type='users_id'
-                    placeholder='<number>'
+                    type='password'
+                    placeholder='<password>'
                     value={user_password}
                     onChange={(e) => setInput1(e.target.value)}
                 />
             </div>
-            <input type='submit' value='Save review' className='btn btn-block' />
+            <input type='submit' value='Save Password' className='btn btn-block' />
         </form>
     )
 }

@@ -24,9 +24,9 @@ const AccountItem = ({ item, onDelete, onToggle, genericInfo }) => {
 const h3style = {
     color: 'navy',
     backgroundColor: 'pink',
-    'border': '2px solid maroon',
-    'borderRadius': '20%',
-    'justify-content' : 'left'
+    border: '2px solid maroon',
+    borderRadius: '20%',
+    justifyContent: 'left'
 }
 
 const style2 = {

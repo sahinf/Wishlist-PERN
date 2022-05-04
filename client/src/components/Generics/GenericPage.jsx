@@ -111,7 +111,7 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
                                 </>
 
                             ) : (
-                                `No ${genericInfo.head_title} To Show`
+                                `No data to show :(`
                             )}
                         </>
                     }

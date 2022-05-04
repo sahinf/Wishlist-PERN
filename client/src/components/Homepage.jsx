@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
-import Footer from "./Footer";
 import axios from "axios";
 import urls from "./../URLs";
 import "../css/Homepage.css";
@@ -72,7 +71,6 @@ function Homepage(props) {
 							))}
 						</div> */}
 					</div>
-					<Footer />
 				</>
 			) : (
 				<Loading />

@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar"
 import Homepage from "./components/Homepage"
 import Login from "./components/Login"
 import "./css/App.css"
-import axios from "axios"
 
 import { useDisplayToggle } from "./components/custom_hooks/navDisplay"
 
@@ -15,7 +14,6 @@ import urls from './URLs'
 
 //* Generic pages to automate each CRUD page
 import GenericPage from "./components/Generics/GenericPage"
-import GenericAddItem from "./components/Generics/GenericAddItem"
 import GenericItem from "./components/Generics/GenericItem"
 
 //* Specific pages for components that are EXTRA
@@ -42,7 +40,7 @@ function App() {
       //* Get user_id from token in local storage
       const user = await activeUser()
       console.log('App: user will be', user)
-      
+
       setUser(user)
       console.log('App: user is', currentUser)
       console.log(JSON.stringify(currentUser))
@@ -245,7 +243,7 @@ function App() {
 
   //** INSANE CODE REUSE IN ACTION HERE
   return (
-    <div className="App">
+    <div className="App" >
       <Navbar display={display} currentUser={currentUser} />
       <Routes>
         <Route index element={<Homepage DisplaySetFlex={DisplaySetFlex} />} />
