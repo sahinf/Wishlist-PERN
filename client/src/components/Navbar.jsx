@@ -11,52 +11,24 @@ import "../css/Navbar.css";
 
 const { wishlistCountURL } = urls;
 
-//! Used to be Navbar = (props) => {}
 const Navbar = (props) => {
 
 	const { display, count } = props;
 
-	const [currentUser, setCurrentUser] = useState({ user_id: "", user_name: "" });
 	const [cartNumber, setCartNumber] = useState(0);
+
+	const [currentUser, setCurrentUser] = useState({ user_id: "", user_name: "" });
 
 	const searchIconStyle = { fontSize: "1.5rem" };
 
-	//! REMOVE wishlist items count
-	// useEffect(() => {
-	// 	const cartCount = async () => {
-	// 		try {
-	// 			const { data } = await axios({
-	// 				method: "get",
-	// 				url: wishlistCountURL(),
-	// 				headers: {
-	// 					token: token(),
-	// 				},
-	// 			});
-
-	// 			setCartNumber(data.count);
-	// 		} catch (e) {
-	// 			// alert(e.message);
-	// 		}
-	// 	};
-
-	// 	cartCount();
-	// }, [count]);
-
 	useEffect(() => {
-		const showCurrentUserAndWishlistCount = async () => {
-			//* Get user_id from token in local storage
-			const user = await activeUser();
-			console.log("navbar user: ", user);
-
-
-			setCurrentUser({ ...user });
-			console.log(JSON.stringify(currentUser));
+		const showWishListCount = async () => {
 			try {
 				const { data } = await axios({
 					method: "post",
 					url: wishlistCountURL(),
 					data: {
-						users_id: user
+						users_id: currentUser
 					}
 				});
 				setCartNumber(data.count);
@@ -65,8 +37,16 @@ const Navbar = (props) => {
 			}
 		};
 
-		showCurrentUserAndWishlistCount();
+		showWishListCount();
 	}, []);
+
+	const isEmployee = () => {
+		if (currentUser >= 20)
+			return true;
+		return false;
+	}
+
+	const admin = isEmployee();
 
 	return (
 		<nav className="container-navbar" style={{ display: display }}>
@@ -91,27 +71,35 @@ const Navbar = (props) => {
 
 			{/* //! DISABLED OLD LINK */}
 			<div className="options account">
-				{currentUser.name ? (<small> Hello, <span>{currentUser.name}</span> </small>)
+				{false ? (<small> Hello, <span>{currentUser.users_id}</span> </small>)
 					: (<small> <Link to="/login">LOGIN NOW</Link> </small>)}
 				{/* <b>account</b> */}
 			</div>
 
-			{/* ADMIN FEATURE SETS */}
-			<NavLink to="/carrier-shipping" className="options account">Carrier Shipping</NavLink>
+			{admin ? 
+			<NavLink to="/carrier-shipping" className="options account">Carrier Shipping</NavLink> 
+			: 
+			<NavLink to="/reviews" className="options account">Product Reviews</NavLink>
+			}
 
-			<NavLink to="/employees" className="options account">Employees</NavLink>
+			{admin ? <NavLink to="/employees" className="options account">Employees</NavLink> 
+			:
+			<NavLink to="/complaints" className="options account">Interface Complaints</NavLink>}
 
-			<NavLink to="/manufacturer" className="options account">Manufacturers</NavLink>
+			{admin ? <NavLink to="/manufacturer" className="options account">Manufacturers</NavLink>
+			:
+			<NavLink to="/account" className="options account">Account Info</NavLink>}
 
 			<NavLink to="/membership" className="options account">Membership</NavLink>
 
+			{/* <NavLink to="/complaints" className="options account">Complaints</NavLink> */}
 
 			{/* //* Link to Wishlist */}
 			<NavLink to="/am/cart" className="options ForCart">
 				<ShoppingCartIcon></ShoppingCartIcon>
 				<span>{cartNumber}</span>
 			</NavLink>
-			{currentUser.name && (
+			{(
 				<div
 					className="options"
 					style={{ fontSize: "80%" }}

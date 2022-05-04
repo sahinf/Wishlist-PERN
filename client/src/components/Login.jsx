@@ -13,15 +13,15 @@ export default function Login(props) {
         users_id: "",
         user_password: ""
     })
-    
+
     props.DisplaySetNone();
-    
-    //* Successful login!
+
     const navigate = useNavigate();
     //* send ID and password to login API
     const handleSubmit = async (e) => {
         e.preventDefault(); //* Prevent a link (e) from opening the URL
         let jwt = await loginRequest(input);
+        //* Successful login!
         if (jwt) {
             localStorage.setItem("token", jwt);
             navigate('/')
@@ -33,13 +33,6 @@ export default function Login(props) {
             <form className="Auth-form">
                 <div className="Auth-form-content">
                     <h3 className="Auth-form-title">Sign In</h3>
-                    {/* If not registered, should reroute to sign up page */}
-                    {/* <div className="text-center">
-                            Not registered yet?{" "}
-                            <span className="link-primary" onClick={changeAuthMode}>
-                                Sign Up
-                            </span>
-                        </div> */}
                     <div className="form-group mt-3">
                         <label>User ID</label>
                         <input
@@ -65,12 +58,6 @@ export default function Login(props) {
                             Submit
                         </button>
                     </div>
-                    {/* //! Remove forgot password */}
-                    {/* <p className="text-center mt-2">
-                        Forgot <a href="#">password?</a>
-                    </p> */}
-
-                    {/* Add <NavLink to="/signup"> Sign up </NavLink> */}
                 </div>
             </form>
             <Outlet />

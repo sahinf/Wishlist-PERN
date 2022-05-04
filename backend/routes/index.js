@@ -5,7 +5,8 @@ const wishlist = require('./wishlist');
 const products = require('./products');
 const carriers = require('./carriers');
 const employees = require('./employees');
-const generics = require('./genericCRUD')
+const generics = require('./genericCRUD');
+const reviews = require('./reviews');
 
 
 //* List all other modules to export as router
@@ -17,5 +18,6 @@ module.exports = app => {
   app.use('/products', products),
   app.use('/carriers', carriers),
   app.use('/employees', employees),
-  app.use('/CRUD', generics)
+  app.use('/CRUD', generics),
+  app.use('/reviews', reviews)
 };

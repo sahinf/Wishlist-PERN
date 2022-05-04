@@ -6,8 +6,6 @@ import Header from '../Header'
 import { Route, Routes } from 'react-router-dom'
 
 // import AddItem from './GenericAddItem'
-import Item from './GenericItem'
-import { green } from '@material-ui/core/colors'
 
 const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
 
@@ -25,7 +23,7 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
         const getItems = async () => {
             try {
                 const itemsFromServer = await fetchItems();
-                console.log(itemsFromServer)
+                console.log('Get request from server: ',itemsFromServer)
                 setItems(itemsFromServer);
             } catch (e) {
                 alert(`Error: ${e?.response?.data}`)
@@ -35,13 +33,14 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
     }, [])
 
     const { urls } = genericInfo;
+    const { crud } = genericInfo;
     //* Fetch all data from URL
     const fetchItems = async () => {
         const { data } = await axios({
             method: "get",
             url: urls.getURL,
             body: {
-                table: 'manufacturer'
+                table: crud.table
             }
         })
         return data;
@@ -50,6 +49,7 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
     //* Add OR update existing!
     const { table, pk } = genericInfo.crud;
     const addItem = async (item) => {
+        console.log('trying to add item: ', item)
         try {
             const { data } = await axios({
                 method: "put",
@@ -62,11 +62,6 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
                     pk
                 }
             });
-            // setItems(
-            //     items.map((i) =>
-            //         i[pk] === item[pk] ? { ...item } : i
-            //     )
-            // );
             setItems([...items, item]);
         } catch (e) {
             alert(`Error: ${e?.response?.data}`)
@@ -107,11 +102,11 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
                     path='/'
                     element={
                         <>
-                            {showAdd && <AddComponent onAdd={addItem} addInfo={genericInfo.addInfo} />}
+                            {showAdd && <AddComponent onAdd={addItem} addInfo={genericInfo.addInfo} genericInfo={genericInfo} />}
                             {items.length > 0 ? (
                                 <>
                                     {items.map((item, index) => (
-                                        <ItemComponent key={index} item={item} onDelete={deleteItem} onToggle={onToggle} />
+                                        <ItemComponent key={index} item={item} onDelete={deleteItem} onToggle={onToggle} genericInfo={genericInfo}/>
                                     ))}
                                 </>
 

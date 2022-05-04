@@ -64,6 +64,27 @@ const getMemURL = (table) => `${membershipURL()}/${table}`;
 const putMemURL = () => `${membershipURL()}`;
 const delMemURL = () => `${membershipURL()}`;
 
+//***** CUSTOMER CART/WISHLIST API URLS */
+// const wishlist
+
+//**** PRODUCT REVIEW API URLS */
+const reviewURL = () => `${domainName}/reviews`
+const getRevURL = (user) => `${reviewURL()}/${user}`
+const putRevURL = () => `${genericCRUD()}`
+const delRevURL = () => `${genericCRUD()}`
+
+//**** PRODUCT COMPLAINT API URLS */
+const complaintURL = () => `${genericCRUD()}`
+const getComURL = (table) => `${complaintURL()}/${table}`
+const putComURL = () => `${complaintURL()}`
+const delComURL = () => `${complaintURL()}`
+
+//**** ACCOUNT INFO API URLS */
+const accountURL = () => `${genericCRUD()}`
+const getAccURL = (table) => `${accountURL()}/${table}`
+const putAccURL = () => `${accountURL()}`
+const delAccURL = () => `${accountURL()}`
+
 export default {
   requestDomainName,
   genericCRUD,
@@ -85,5 +106,14 @@ export default {
   delManURL,
   getMemURL,
   putMemURL,
-  delMemURL
+  delMemURL,
+  getRevURL,
+  putRevURL,
+  delRevURL,
+  getComURL,
+  putComURL,
+  delComURL,
+  getAccURL,
+  putAccURL,
+  delAccURL
 }

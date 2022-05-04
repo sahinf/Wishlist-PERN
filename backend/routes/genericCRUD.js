@@ -26,7 +26,7 @@ router.get('/:table', async (req, res) => {
     if (data?.rowCount < 1) {
       res.status(404).json(`No data in table [${table}]`);
     }
-
+    // console.log('done\n', data.rows)
     res.status(200).json(data.rows);
   }
   catch (e) {
@@ -47,14 +47,20 @@ router.put('/', async (req, res) => {
 
   try {
     const attributes = body.items;
+    console.log('attributes', attributes)
 
-    //* See if pk exists in table
-    const q1 = `SELECT * FROM ${table} WHERE ${pk}=${attributes[pk]}`
-    const test = await db.query(q1);
-
+    //* Test if PK is provided: no ==> insert
+    const ins = attributes[pk];
+    console.log('ins', ins)
+    let test = undefined
+    if (ins != undefined) {
+      //* See if pk exists in table
+      const q1 = `SELECT * FROM ${table} WHERE ${pk}=${attributes[pk]}`
+      test = await db.query(q1);
+    }
 
     //* INSERT: pk NOT EXIST in table
-    if (test.rowCount < 1) {
+    if (test == undefined || test.rowCount < 1) {
 
       let keys = ""
       let vals = ""
@@ -91,7 +97,7 @@ router.put('/', async (req, res) => {
     }
 
   } catch (e) {
-    console.error(e.detail);
+    console.error(e);
     res.status(500).json(e.detail);
   }
 });
@@ -104,13 +110,13 @@ router.delete('/', async (req, res) => {
     if (!body) {
       res.status(400).json('Server: no Body provided in delete request')
     }
-    const {pk, table} = body;
+    const { pk, table } = body;
     const pkVal = body.items[pk];
-    
+
     const queryDelete = `DELETE FROM ${table} WHERE ${pk}=${pkVal}`;
     await db.query(queryDelete);
     res.status(200).json('Successfully Deleted');
-    
+
   } catch (e) {
     console.error(e);
     res.status(500).json(e.routine);
