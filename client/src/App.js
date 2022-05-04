@@ -28,6 +28,9 @@ import AddComplaint from "./components/Complaints/AddComplaints"
 import ComplaintsItem from "./components/Complaints/ComplaintsItem"
 import AddAccount from "./components/Account/AddAccount"
 import AccountItem from "./components/Account/AccountItem"
+import AddWishlist from "./components/Wishlist/addWishlist"
+import WishlistItem from "./components/Wishlist/WishlistItem"
+import WishlistPage from "./components/Wishlist/WishlistPage"
 
 
 function App() {
@@ -241,6 +244,34 @@ function App() {
     user: currentUser,
   }
 
+  const wishlistInfo = {
+    path: '/wishlist/*',
+    head_path: '/wishlist',
+    head_title: 'Your wishlist is looking kinda expensive O_O',
+
+    urls: {
+      // getURL: urls.getAccURL('users'),
+      // putURL: urls.putComURL(),
+      // delURL: urls.delComURL()
+      getURL : urls.wishlistGetURL(currentUser),
+      putURL : urls.wishlistPutURL(),
+      insURL : urls.wishlistInsertURL(),
+      delURL : urls.wishlistDelURL()
+    },
+    displayInfo: {
+      one: 'users_id',
+      two: 'product_id',
+      three: undefined
+    },
+    crud: {
+      table: 'wishlist',
+      pk: 'users_id',
+    },
+
+    userType: 'user',
+    user: currentUser,
+  }
+
   //** INSANE CODE REUSE IN ACTION HERE
   return (
     <div className="App" >
@@ -256,6 +287,7 @@ function App() {
         <Route path={revInfo.path} element={<GenericPage genericInfo={revInfo} ItemComponent={ReviewItem} AddComponent={AddReview} />} />
         <Route path={compInfo.path} element={<GenericPage genericInfo={compInfo} ItemComponent={ComplaintsItem} AddComponent={AddComplaint} />} />
         <Route path={accInfo.path} element={<GenericPage genericInfo={accInfo} ItemComponent={AccountItem} AddComponent={AddAccount} />} />
+        <Route path={wishlistInfo.path} element={<WishlistPage genericInfo={wishlistInfo} ItemComponent={WishlistItem} AddComponent={AddWishlist} />} />
 
 
       </Routes>

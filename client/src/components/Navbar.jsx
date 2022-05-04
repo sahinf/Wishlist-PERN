@@ -28,7 +28,7 @@ const Navbar = (props) => {
 					method: "post",
 					url: wishlistCountURL(),
 					data: {
-						users_id: currentUser
+						users_id: usr
 					}
 				})
 				setCartNumber(data.count)
@@ -80,12 +80,8 @@ const Navbar = (props) => {
 
 			{admin ? <NavLink to="/membership" className="options account">Membership</NavLink>
 				:
-				''}
-
-			{/* <NavLink to="/complaints" className="options account">Complaints</NavLink> */}
-
-			{/* //* Link to Wishlist */}
-			<NavLink to="/am/cart" className="options ForCart"> <ShoppingCartIcon></ShoppingCartIcon> <span>{cartNumber}</span> </NavLink>
+				<NavLink to="/wishlist" className="options ForCart"> <ShoppingCartIcon></ShoppingCartIcon> <span>{cartNumber}</span> </NavLink>}
+			
 			{(
 				<div
 					className="options"

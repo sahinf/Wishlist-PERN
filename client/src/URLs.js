@@ -1,9 +1,9 @@
-const localHost = true;
+const localHost = true
 
-const local_ip = `http://127.0.0.1`;
+const local_ip = `http://127.0.0.1`
 // const local_ip = `localhost`
-const local_port = `8080`;
-const localURL = `${local_ip}:${local_port}`;
+const local_port = `8080`
+const localURL = `${local_ip}:${local_port}`
 
 
 
@@ -11,61 +11,56 @@ const requestDomainName = () => {
   return localHost ? localURL : "ENTER SERVER URL"
 }
 
-const domainName = requestDomainName();
+const domainName = requestDomainName()
 //***** GLOBAL CRUD API */
-const genericCRUD = () => `${domainName}/CRUD`;
+const genericCRUD = () => `${domainName}/CRUD`
 
 //* All users API
-const usersURL = () => `${domainName}/users`;
+const usersURL = () => `${domainName}/users`
 
 //* Specific user API
-const userIdURL = (userId) => `${usersURL()}/${userId}`;
+const userIdURL = (userId) => `${usersURL()}/${userId}`
 
 //* Login API
-const loginURL = () => `${domainName}/login`;
+const loginURL = () => `${domainName}/login`
 
 //***** WIISHLIST API URLs */
-const wishlistURL = () => `${domainName}/wishlist`;
-
-const wishlistUser = (user_id) => `${wishlistURL()}/${user_id}`;
-
-const wishlistCountURL = () => `${wishlistURL()}/count`;
-
-const wishlistInsertURL = () => `${wishlistURL()}/insert`;
-
-const wishlistDeleteURL = () => `${wishlistURL()}/delete`;
+const wishlistURL = () => `${domainName}/wishlist`
+const wishlistUser = (user_id) => `${wishlistURL()}/${user_id}`
+const wishlistCountURL = () => `${wishlistURL()}/count`
+const wishlistInsertURL = () => `${wishlistURL()}/insert`
+const wishlistDelURL = () => `${wishlistURL()}/delete`
+const wishlistPutURL = () => `${wishlistURL()}/put`
+const wishlistGetURL = (id) => `${wishlistURL()}/${id}`;
 
 //***** PRODUCTS API URLs */
-const productsURL = () => `${domainName}/products`;
+const productsURL = () => `${domainName}/products`
 
-const getAllProductsURL = () => `${productsURL()}/all`;
+const getAllProductsURL = () => `${productsURL()}/all`
 
-const getOneProductURL = () => (product_id) => `${productsURL()}/:${product_id}`;
+const getOneProductURL = () => (product_id) => `${productsURL()}/:${product_id}`
 
 //***** CARRIERS API URLS */
-const carriersURL = () => `${domainName}/carriers`;
+const carriersURL = () => `${domainName}/carriers`
 
 //***** EMPLOYEES API URLS */
-// const employeesURL = () => `${domainName}/employees`;
-const employeesURL = () => `${genericCRUD()}`;
-const getEmpURL = (table) => `${employeesURL()}/${table}`;
-const putEmpURL = () => `${employeesURL()}`;
-const delEmpURL = () => `${employeesURL()}`;
+// const employeesURL = () => `${domainName}/employees`
+const employeesURL = () => `${genericCRUD()}`
+const getEmpURL = (table) => `${employeesURL()}/${table}`
+const putEmpURL = () => `${employeesURL()}`
+const delEmpURL = () => `${employeesURL()}`
 
 //***** MANUFACTURER API URLS */
-const manufacturerURL = () => `${genericCRUD()}`;
-const getManURL = (table) => `${manufacturerURL()}/${table}`;
-const putManURL = () => manufacturerURL();
-const delManURL = () => manufacturerURL();
+const manufacturerURL = () => `${genericCRUD()}`
+const getManURL = (table) => `${manufacturerURL()}/${table}`
+const putManURL = () => manufacturerURL()
+const delManURL = () => manufacturerURL()
 
 //***** MEMBERSHIP API URLS */
-const membershipURL = () => `${genericCRUD()}`;
-const getMemURL = (table) => `${membershipURL()}/${table}`;
-const putMemURL = () => `${membershipURL()}`;
-const delMemURL = () => `${membershipURL()}`;
-
-//***** CUSTOMER CART/WISHLIST API URLS */
-// const wishlist
+const membershipURL = () => `${genericCRUD()}`
+const getMemURL = (table) => `${membershipURL()}/${table}`
+const putMemURL = () => `${membershipURL()}`
+const delMemURL = () => `${membershipURL()}`
 
 //**** PRODUCT REVIEW API URLS */
 const reviewURL = () => `${domainName}/reviews`
@@ -94,7 +89,9 @@ export default {
   wishlistUser,
   wishlistCountURL,
   wishlistInsertURL,
-  wishlistDeleteURL,
+  wishlistDelURL,
+  wishlistPutURL,
+  wishlistGetURL,
   getAllProductsURL,
   getOneProductURL,
   carriersURL,
