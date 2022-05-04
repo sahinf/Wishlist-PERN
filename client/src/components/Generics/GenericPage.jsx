@@ -62,11 +62,12 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
                     pk
                 }
             });
-            setItems(
-                items.map((i) =>
-                    i[pk] === item[pk] ? { ...item } : i
-                )
-            )
+            // setItems(
+            //     items.map((i) =>
+            //         i[pk] === item[pk] ? { ...item } : i
+            //     )
+            // );
+            setItems([...items, item]);
         } catch (e) {
             alert(`Error: ${e?.response?.data}`)
         }

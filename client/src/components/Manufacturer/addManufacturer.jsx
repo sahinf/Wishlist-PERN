@@ -46,7 +46,7 @@ const AddManufacturer = ({ onAdd, addInfo }) => {
           onChange={(e) => setInput3(e.target.value)}
         />
       </div>
-      <input type='submit' value='Save Task' className='btn btn-block' />
+      <input type='submit' value='Save Manufacturer' className='btn btn-block' />
     </form>
   )
 }

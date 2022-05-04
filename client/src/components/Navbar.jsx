@@ -96,11 +96,14 @@ const Navbar = (props) => {
 				{/* <b>account</b> */}
 			</div>
 
+			{/* ADMIN FEATURE SETS */}
 			<NavLink to="/carrier-shipping" className="options account">Carrier Shipping</NavLink>
 
 			<NavLink to="/employees" className="options account">Employees</NavLink>
 
 			<NavLink to="/manufacturer" className="options account">Manufacturers</NavLink>
+
+			<NavLink to="/membership" className="options account">Membership</NavLink>
 
 
 			{/* //* Link to Wishlist */}

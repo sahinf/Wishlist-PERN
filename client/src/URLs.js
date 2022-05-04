@@ -46,13 +46,23 @@ const getOneProductURL = () => (product_id) => `${productsURL()}/:${product_id}`
 const carriersURL = () => `${domainName}/carriers`;
 
 //***** EMPLOYEES API URLS */
-const employeesURL = () => `${domainName}/employees`;
+// const employeesURL = () => `${domainName}/employees`;
+const employeesURL = () => `${genericCRUD()}`;
+const getEmpURL = (table) => `${employeesURL()}/${table}`;
+const putEmpURL = () => `${employeesURL()}`;
+const delEmpURL = () => `${employeesURL()}`;
 
 //***** MANUFACTURER API URLS */
 const manufacturerURL = () => `${genericCRUD()}`;
 const getManURL = (table) => `${manufacturerURL()}/${table}`;
 const putManURL = () => manufacturerURL();
 const delManURL = () => manufacturerURL();
+
+//***** MEMBERSHIP API URLS */
+const membershipURL = () => `${genericCRUD()}`;
+const getMemURL = (table) => `${membershipURL()}/${table}`;
+const putMemURL = () => `${membershipURL()}`;
+const delMemURL = () => `${membershipURL()}`;
 
 export default {
   requestDomainName,
@@ -67,8 +77,13 @@ export default {
   getAllProductsURL,
   getOneProductURL,
   carriersURL,
-  employeesURL,
+  getEmpURL,
+  putEmpURL,
+  delEmpURL,
   getManURL,
   putManURL,
   delManURL,
+  getMemURL,
+  putMemURL,
+  delMemURL
 }

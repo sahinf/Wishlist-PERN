@@ -10,6 +10,7 @@ import { useDisplayToggle } from "./components/custom_hooks/navDisplay";
 import activeUser from "./components/custom_hooks/activeUser";
 import Profile from "./components/Profile";
 
+import urls from './URLs'
 
 //* Generic pages to automate each CRUD page
 import GenericPage from "./components/Generics/GenericPage";
@@ -20,8 +21,8 @@ import GenericItem from "./components/Generics/GenericItem";
 import CarrierPage from "./components/CarrierPage";
 import AddEmployee from "./components/Employee/AddEmployee";
 import AddManufacturer from "./components/Manufacturer/addManufacturer";
-
-import urls from './URLs'
+import addMembership from "./components/Membership/AddMembership";
+import MembershipItem from "./components/Membership/MembershipItem";
 
 function App() {
   const [user, setUser] = useState({});
@@ -56,9 +57,13 @@ function App() {
       three: 'employee_lname'
     },
     urls: {
-      getURL: urls.employeesURL(),
-      putURL: urls.employeesURL(),
-      delURL: urls.employeesURL()
+      getURL: urls.getEmpURL('employee'),
+      putURL: urls.putEmpURL(),
+      delURL: urls.delEmpURL()
+    },
+    crud: {
+      table: 'employee',
+      pk: 'users_id'
     }
   }
 
@@ -92,10 +97,37 @@ function App() {
     crud: {
       table: 'manufacturer',
       pk: 'man_id',
-      // tableEntries: {
-      //   man_id: undefined,
-      //   seller_name
-      // }
+    }
+  }
+
+  const memInfo = {
+    path: '/membership/*',
+    head_path: '/membership',
+    head_title: 'Memberships of Customers',
+
+    addInfo: {
+      label1: 'Membership ID',
+      placeholder1: '<number>',
+      label2: 'Customer ID',
+      placeholder2: '<number>',
+      label3: 'Membership Status',
+      placeholder3: 'Type of membership'
+    },
+
+    displayInfo: {
+      one: 'users_id',
+      two: 'users_customer_id',
+      three: 'membership_status'
+    },
+
+    urls: {
+      getURL: urls.getMemURL('membership'),
+      putURL: urls.putMemURL(),
+      delURL: urls.delMemURL()
+    },
+    crud: {
+      table: 'membership',
+      pk: 'membership_id',
     }
   }
 
@@ -110,6 +142,8 @@ function App() {
         <Route path='/carrier-shipping/*' element={<CarrierPage />} />
         <Route path={empInfo.path} element={<GenericPage genericInfo={empInfo} ItemComponent={GenericItem} AddComponent={AddEmployee} />} />
         <Route path={manInfo.path} element={<GenericPage genericInfo={manInfo} ItemComponent={GenericItem} AddComponent={AddManufacturer} />} />
+        <Route path={memInfo.path} element={<GenericPage genericInfo={memInfo} ItemComponent={MembershipItem} AddComponent={addMembership} />} />
+
       </Routes>
     </div >
   );
