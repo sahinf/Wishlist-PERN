@@ -28,9 +28,9 @@ const loginURL = () => `${domainName}/login`
 const wishlistURL = () => `${domainName}/wishlist`
 const wishlistUser = (user_id) => `${wishlistURL()}/${user_id}`
 const wishlistCountURL = () => `${wishlistURL()}/count`
-const wishlistInsertURL = () => `${wishlistURL()}/insert`
-const wishlistDelURL = () => `${wishlistURL()}/delete`
-const wishlistPutURL = () => `${wishlistURL()}/put`
+const wishlistInsertURL = () => `${wishlistURL()}`
+const wishlistDelURL = () => `${wishlistURL()}`
+const wishlistPutURL = () => `${wishlistURL()}`
 const wishlistGetURL = (id) => `${wishlistURL()}/${id}`;
 
 //***** PRODUCTS API URLs */

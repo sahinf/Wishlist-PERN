@@ -2,35 +2,35 @@ import { useState } from 'react'
 
 const AddWishlist = ({ onAdd, addInfo, genericInfo }) => {
 
-  const [membership_id, setInput1] = useState('')
-  const [users_customer_id, setInput2] = useState('')
-  const [membership_status, setInput3] = useState('')
-  const [users_id, setInput4] = useState('')
+  const [product_id, setInput1] = useState('')
+//   const [users_customer_id, setInput2] = useState('')
+//   const [membership_status, setInput3] = useState('')
+//   const [users_id, setInput4] = useState('')
 
   const onSubmit = (e) => {
     e.preventDefault()
 
-    onAdd({ membership_id, users_customer_id, membership_status, users_id})
+    onAdd({ product_id, user_id : genericInfo.user})
 
     setInput1('')
-    setInput2('')
-    setInput3('')
-    setInput4('')
+    // setInput2('')
+    // setInput3('')
+    // setInput4('')
   }
 
   return (
 
     <form className='add-form' onSubmit={onSubmit}>
       <div className='form-control'>
-        <label>{addInfo.label1}</label>
+        <label>Enter Product</label>
         <input
           type='users_customer_id'
-          placeholder={addInfo.placeholder1}
-          value={membership_id}
+          placeholder="Product ID"
+          value={product_id}
           onChange={(e) => setInput1(e.target.value)}
         />
       </div>
-      <div className='form-control'>
+      {/* <div className='form-control'>
         <label>{addInfo.label2}</label>
         <input
           type='users_customer_id'
@@ -56,7 +56,7 @@ const AddWishlist = ({ onAdd, addInfo, genericInfo }) => {
           value={users_id}
           onChange={(e) => setInput4(e.target.value)}
         />
-      </div>
+      </div> */}
       <input type='submit' value='Save Membership' className='btn btn-block' />
     </form>
   )

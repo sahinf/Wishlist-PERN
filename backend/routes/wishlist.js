@@ -38,13 +38,46 @@ router.get('/:id', async (req, res) => {
     WHERE wishlist.users_id = ${users_id}
     `)
     if (rows.length < 1) {
-      res.status(200).json('Wishlist is empty')
+      res.json('Wishlist is empty')
     }
-    console.log('Got wishlist: ', rows)
-    res.status(200).json(rows);
+    else {
+      console.log('Got wishlist: ', rows)
+      res.status(200).json(rows);
+    }
 
   } catch (e) {
     console.error(e.stack);
     res.status(500).json('OOPS')
+  }
+})
+
+router.delete('/', async (req, res) => {
+  try {
+    const body = req.body;
+    const { items } = body;
+    if (!body) {
+      res.status(400).json('Server: no Body provided in delete request')
+    }
+    console.log(body)
+    const qDelete = `DELETE FROM wishlist WHERE product_id=${items.product_id}`
+    console.log('query is', qDelete)
+    res.status(200).json("DELETED")
+    await db.query(qDelete);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json("OOPS I MADE A POOPSIE")
+  }
+})
+
+router.put('/', async (req, res) => {
+  try {
+    const body = req.body;
+    const { items } = body;
+    console.log('putting',body)
+    await db.query(`INSERT INTO wishlist(users_id, product_id) VALUES (${items.users_id}, ${items.product_id})`)
+    res.status(200).json("DONE")
+  } catch (e) {
+    console.error(e);
+    res.status(500).json("OOPS I MADE A POOPSIE")
   }
 })

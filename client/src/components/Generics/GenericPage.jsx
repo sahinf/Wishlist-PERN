@@ -71,13 +71,14 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
     //* Delete if can
     const deleteItem = async (item) => {
         try {
+            // console.log('deleteing', genericInfo.user)
             await axios({
                 method: "delete",
                 url: urls.delURL,
                 data: {
-                    items: { ...item },
+                    items: { ...item, },
                     table,
-                    pk
+                    pk,
                 }
             });
             setItems(items.filter((i) => i[pk] !== item[pk]));
