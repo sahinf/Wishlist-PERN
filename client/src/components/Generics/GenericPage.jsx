@@ -11,16 +11,6 @@ import { green } from '@material-ui/core/colors'
 
 const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
 
-    // for (const [key, value] of Object.entries(obj)) {
-    //     console.log(`${key}: ${value}`);
-    // }
-
-    // let obj = genericInfo.tableObj;
-    // const setObj = (getResponse) => {
-    //     obj = getResponse;
-    // }
-    // console.log(`obj: `, obj);
-
     const [showAdd, setShowAdd] = useState(false);
     let [items, setItems] = useState([]);
 
@@ -51,28 +41,32 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
             method: "get",
             url: urls.getURL,
             body: {
-                table : 'manufacturer'
+                table: 'manufacturer'
             }
         })
         return data;
     }
 
     //* Add OR update existing!
-    const {table, pk} = genericInfo.crud;
+    const { table, pk } = genericInfo.crud;
     const addItem = async (item) => {
         try {
             const { data } = await axios({
                 method: "put",
                 url: urls.putURL,
                 data: {
-                    items : {
+                    items: {
                         ...item
                     },
                     table,
                     pk
                 }
             });
-            setItems([...items, item]);
+            setItems(
+                items.map((i) =>
+                    i[pk] === item[pk] ? { ...item } : i
+                )
+            )
         } catch (e) {
             alert(`Error: ${e?.response?.data}`)
         }
@@ -85,12 +79,12 @@ const GenericPage = ({ genericInfo, ItemComponent, AddComponent }, props) => {
                 method: "delete",
                 url: urls.delURL,
                 data: {
-                    items : {...item},
+                    items: { ...item },
                     table,
                     pk
                 }
             });
-            setItems(items.filter((i) => i.users_id !== item.users_id));
+            setItems(items.filter((i) => i[pk] !== item[pk]));
         } catch (e) {
             alert(`Error: ${e?.response?.data}`)
         }

@@ -109,6 +109,7 @@ router.delete('/', async (req, res) => {
     
     const queryDelete = `DELETE FROM ${table} WHERE ${pk}=${pkVal}`;
     await db.query(queryDelete);
+    res.status(200).json('Successfully Deleted');
     
   } catch (e) {
     console.error(e);
