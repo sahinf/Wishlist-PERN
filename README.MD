@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
   res.send(query.rows);
 })
 ```
-to handle GET request to the url `<hostname>/user`. It makes a database query to get all users and returns an array of users.
+to handle GET request to the url `<hostname>/users`. It makes a database query to get all users and returns an array of users.
 
 ```js
 //* Get specific user
@@ -51,7 +51,7 @@ router.get('/:id', async (req, res) => {
   res.send(rows[0]);
 })
 ```
-This route returns a specific user given an `id` through `<hostname>/user/id` using `id` as the `user_id` primary key.
+This route returns a specific user given an `id` through `<hostname>/users/id` using `id` as the `user_id` primary key.
 
 ```js
 //* Update password (or anything) of a user
@@ -73,6 +73,8 @@ And here we handle a PUT request whose body should ideally contain a
 
 to use as the new password. This API call is made when a user that is logged in wants to update their password.
 
+### Testing backend without any frontend
 
+My favorite tool that I discovered during this process has undoubtedly been [Postman](https://www.postman.com/downloads/). Postman allows you to specifically test API calls. For example, I would test the exact API call that a React component that needs to see all users will make through `http://127.0.0.1:8080/users` by inputting that into Postman as a GET request. Postman would then display the result of that call as defined by [backend/routes/user.js](./backend/routes/user.js).
 
 
