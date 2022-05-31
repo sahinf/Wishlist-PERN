@@ -19,17 +19,6 @@ app.get('/', (req, res) => {
 const mountRoutes = require('./routes');
 mountRoutes(app);
 
-//! allow api call from react 
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   next();
-// });
-
-
 //* Default page
 app.use('*', (req, res) => {
   res.sendStatus('404').send('Page not found');
