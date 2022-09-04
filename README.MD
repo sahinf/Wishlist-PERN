@@ -1,15 +1,11 @@
 # About
 
-This project was created in 2 weeks for my CSCE 310 Databases course. 
+This project was for CSCE 310 Databases course. 
 The goals of the assignment were to implement a non-nosql database project of our choosing. We decided on a wishlist application to allow with 4 user and 4 admin features (as required by the guidelines).
 
-When I had started on this project, I had no idea what a fullstack application meant. Our only required objective was to implement something that met our 8 feature sets that relied on non-nosql database queries. 
-
-The project is riddled with comments to help me reinforce the concepts I learned through tenuous googling in order to support me in using these tools.
+When I had started on this project, I had no idea what a fullstack application meant. Our only required objective was to implement something that met our 8 feature sets that relied on non-nosql database queries. I used the opportunity to become familiar with the following tools.
 
 ## PERN
-
-The main reason for using this stack was for me to finally learn what `Node.js` and `Express` really did behind the scenes. 
 
 | Acronym | What | Why |
 |---------|------|-----|
